@@ -12,13 +12,23 @@
   & p {
     font-size: 3rem;
     letter-spacing: 0.15rem;
-    font-family: "Murmure", sans-serif;
+    font-family: "Murmure", serif;
     height: 2.6rem;
   }
 
   & ul {
     display: flex;
     gap: 2rem;
+    & li {
+      cursor: pointer;
+      height: calc(0.875rem + 5px);
+      overflow: hidden;
+      text-align: center;
+    }
+    & span {
+      display: block;
+      transition: transform 0.4s cubic-bezier(0.33, 1, 0.68, 1);
+    }
   }
   & div {
     display: flex;

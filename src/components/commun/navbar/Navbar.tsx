@@ -6,6 +6,7 @@
 
 import React from "react";
 import style from "@/styles/components/Navbar.module.css";
+import { Variants, motion } from "framer-motion";
 /*
 |--------------------------------------------------------------------------
 | Contracts
@@ -27,9 +28,24 @@ export const Navbar: React.FC<NavbarProps> = (props) => {
     <nav className={style.navbar}>
       <p>Saphir</p>
       <ul className={style.list}>
-        <li>lookbook</li>
-        <li>about</li>
-        <li>contact</li>
+        <li>
+          <motion.span whileHover={{ y: -17 }}>
+            <span>lookbook</span>
+            <span>lookbook</span>
+          </motion.span>
+        </li>
+        <li>
+          <motion.span whileHover={{ y: -17 }}>
+            <span>about</span>
+            <span>about</span>
+          </motion.span>
+        </li>
+        <li>
+          <motion.span whileHover={{ y: -17 }}>
+            <span>contact</span>
+            <span>contact</span>
+          </motion.span>
+        </li>
       </ul>
       <div>
         <span>Bag</span>
