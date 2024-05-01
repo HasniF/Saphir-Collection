@@ -2,7 +2,10 @@
   font-family: "Murmure";
   src: url("../fonts/Murmure.woff2");
 }
-
+@font-face {
+  font-family: "Ambidexter";
+  src: url("../fonts/Ambidexter.woff2");
+}
 @font-face {
   font-family: "Satoshi";
   src: url("../fonts/Satoshi-Bold.otf");
@@ -38,7 +41,7 @@
 html,
 body {
   max-width: 100vw;
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 
 a {

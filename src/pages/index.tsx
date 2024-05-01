@@ -1,5 +1,7 @@
 import Head from "next/head";
 import styles from "@/styles/pages/Home.module.css";
+import { motion } from "framer-motion";
+import { AnimatedText } from "@/components";
 
 const Home = () => {
   return (
@@ -10,6 +12,12 @@ const Home = () => {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      <main className={styles.container}>
+        <motion.h1>
+          <AnimatedText text="Saphir" className={styles.brand} />
+          <AnimatedText text="Collection" className={styles.collection} />
+        </motion.h1>
+      </main>
     </>
   );
 };
