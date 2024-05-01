@@ -1,0 +1,29 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 3.5rem;
+
+  /* Commun style betwen ul & div */
+  text-transform: uppercase;
+  font-size: 0.875rem;
+  font-family: "satoshi", sans-serif;
+
+  & p {
+    font-size: 3rem;
+    letter-spacing: 0.15rem;
+    font-family: "Murmure", sans-serif;
+    height: 2.6rem;
+  }
+
+  & ul {
+    display: flex;
+    gap: 2rem;
+  }
+  & div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.3rem;
+  }
+}
