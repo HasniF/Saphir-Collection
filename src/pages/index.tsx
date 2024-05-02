@@ -1,10 +1,30 @@
 import Head from "next/head";
 import styles from "@/styles/pages/Home.module.css";
-import { motion } from "framer-motion";
+import { motion, useMotionValue } from "framer-motion";
 import { AnimatedText } from "@/components";
 import Image from "next/image";
+import { use, useEffect, useState } from "react";
+
+const ImageMotion = motion(Image);
 
 const Home = () => {
+  const mouse = {
+    x: useMotionValue(0),
+    y: useMotionValue(0),
+  };
+
+  const manageMouseMovement = (e: MouseEvent) => {
+    mouse.x.set(e.clientX / -35);
+    mouse.y.set(e.clientY / -35);
+  };
+
+  useEffect(() => {
+    window.addEventListener("mousemove", manageMouseMovement);
+    return () => {
+      window.removeEventListener("mousemove", manageMouseMovement);
+    };
+  }, []);
+
   return (
     <>
       <Head>
@@ -22,35 +42,40 @@ const Home = () => {
           Issue / <span>01</span>
         </p>
         <div>
-          <Image
+          <ImageMotion
             src="/images/1.jpg"
             alt="Saphir Collection"
             width={250}
             height={250}
+            style={{ x: mouse.x, y: mouse.y }}
           />
-          <Image
+          <ImageMotion
             src="/images/2.jpg"
             alt="Saphir Collection"
             width={350}
             height={250}
+            style={{ x: mouse.x, y: mouse.y }}
           />
-          <Image
+          <ImageMotion
             src="/images/3.jpg"
             alt="Saphir Collection"
             width={150}
             height={180}
+            style={{ x: mouse.x, y: mouse.y }}
           />
-          <Image
+          <ImageMotion
             src="/images/4.jpg"
             alt="Saphir Collection"
             width={190}
             height={200}
+            style={{ x: mouse.x, y: mouse.y }}
           />
-          <Image
+          <ImageMotion
             src="/images/5.jpg"
             alt="Saphir Collection"
             width={250}
             height={250}
+            style={{ x: mouse.x, y: mouse.y }}
           />
         </div>
       </main>
