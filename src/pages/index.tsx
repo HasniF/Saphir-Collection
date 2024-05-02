@@ -3,11 +3,14 @@ import styles from "@/styles/pages/Home.module.css";
 import { motion, useMotionValue } from "framer-motion";
 import { AnimatedText } from "@/components";
 import Image from "next/image";
-import { use, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
+import { AppContext } from "./_app";
 
 const ImageMotion = motion(Image);
 
 const Home = () => {
+  const context = useContext(AppContext);
+
   const mouse = {
     x: useMotionValue(0),
     y: useMotionValue(0),
@@ -33,7 +36,13 @@ const Home = () => {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className={styles.container}>
+      <main
+        className={styles.container}
+        style={{
+          background: context?.appColor.background,
+          color: context?.appColor.text,
+        }}
+      >
         <motion.h1>
           <AnimatedText text="Saphir" className={styles.brand} />
           <AnimatedText text="Collection" className={styles.collection} />
@@ -41,42 +50,90 @@ const Home = () => {
         <p>
           Issue / <span>01</span>
         </p>
-        <div>
-          <ImageMotion
-            src="/images/1.jpg"
-            alt="Saphir Collection"
-            width={250}
-            height={250}
+        <div className={styles.image_container}>
+          <motion.div
             style={{ x: mouse.x, y: mouse.y }}
-          />
-          <ImageMotion
-            src="/images/2.jpg"
-            alt="Saphir Collection"
-            width={350}
-            height={250}
+            onClick={() => {
+              context?.setAppColor({
+                background: "lightblue",
+                text: "yellow",
+              });
+            }}
+          >
+            <Image
+              src="/images/1.jpg"
+              alt="Saphir Collection"
+              width={250}
+              height={250}
+            />
+          </motion.div>
+          <motion.div
             style={{ x: mouse.x, y: mouse.y }}
-          />
-          <ImageMotion
-            src="/images/3.jpg"
-            alt="Saphir Collection"
-            width={150}
-            height={180}
+            onClick={() => {
+              context?.setAppColor({
+                background: "lightgreen",
+                text: "black",
+              });
+            }}
+          >
+            <Image
+              src="/images/2.jpg"
+              alt="Saphir Collection"
+              width={350}
+              height={250}
+            />
+          </motion.div>
+
+          <motion.div
             style={{ x: mouse.x, y: mouse.y }}
-          />
-          <ImageMotion
-            src="/images/4.jpg"
-            alt="Saphir Collection"
-            width={190}
-            height={200}
+            onClick={() => {
+              context?.setAppColor({
+                background: "grey",
+                text: "red",
+              });
+            }}
+          >
+            <Image
+              src="/images/3.jpg"
+              alt="Saphir Collection"
+              width={150}
+              height={180}
+            />
+          </motion.div>
+
+          <motion.div
             style={{ x: mouse.x, y: mouse.y }}
-          />
-          <ImageMotion
-            src="/images/5.jpg"
-            alt="Saphir Collection"
-            width={250}
-            height={250}
+            onClick={() => {
+              context?.setAppColor({
+                background: "lightyellow",
+                text: "blue",
+              });
+            }}
+          >
+            <Image
+              src="/images/4.jpg"
+              alt="Saphir Collection"
+              width={190}
+              height={200}
+            />
+          </motion.div>
+
+          <motion.div
             style={{ x: mouse.x, y: mouse.y }}
-          />
+            onClick={() => {
+              context?.setAppColor({
+                background: "lightpurple",
+                text: "black",
+              });
+            }}
+          >
+            <Image
+              src="/images/5.jpg"
+              alt="Saphir Collection"
+              width={250}
+              height={250}
+            />
+          </motion.div>
         </div>
       </main>
     </>

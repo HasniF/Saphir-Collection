@@ -4,9 +4,10 @@
 | Author: FODEILLA Hasni (hasni1.fodeilla@epitech.eu)
 */
 
-import React from "react";
+import React, { useContext } from "react";
 import style from "@/styles/components/Navbar.module.css";
-import { Variants, motion } from "framer-motion";
+import { motion } from "framer-motion";
+import { AppContext } from "@/pages/_app";
 /*
 |--------------------------------------------------------------------------
 | Contracts
@@ -22,10 +23,17 @@ export interface NavbarProps {
 |--------------------------------------------------------------------------
 */
 export const Navbar: React.FC<NavbarProps> = (props) => {
+  const context = useContext(AppContext);
   // Render
   //--------------------------------------------------------------------------
   return (
-    <nav className={style.navbar}>
+    <nav
+      className={style.navbar}
+      style={{
+        background: context?.appColor.background,
+        color: context?.appColor.text,
+      }}
+    >
       <p>Saphir</p>
       <ul className={style.list}>
         <li>
