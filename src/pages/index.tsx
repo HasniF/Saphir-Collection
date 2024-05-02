@@ -2,6 +2,7 @@ import Head from "next/head";
 import styles from "@/styles/pages/Home.module.css";
 import { motion } from "framer-motion";
 import { AnimatedText } from "@/components";
+import Image from "next/image";
 
 const Home = () => {
   return (
@@ -17,6 +18,41 @@ const Home = () => {
           <AnimatedText text="Saphir" className={styles.brand} />
           <AnimatedText text="Collection" className={styles.collection} />
         </motion.h1>
+        <p>
+          Issue / <span>01</span>
+        </p>
+        <div>
+          <Image
+            src="/images/1.jpg"
+            alt="Saphir Collection"
+            width={250}
+            height={250}
+          />
+          <Image
+            src="/images/2.jpg"
+            alt="Saphir Collection"
+            width={350}
+            height={250}
+          />
+          <Image
+            src="/images/3.jpg"
+            alt="Saphir Collection"
+            width={150}
+            height={180}
+          />
+          <Image
+            src="/images/4.jpg"
+            alt="Saphir Collection"
+            width={190}
+            height={200}
+          />
+          <Image
+            src="/images/5.jpg"
+            alt="Saphir Collection"
+            width={250}
+            height={250}
+          />
+        </div>
       </main>
     </>
   );

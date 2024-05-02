@@ -1,6 +1,6 @@
 .container {
   position: relative;
-  height: 100vh;
+  height: calc(100vh - 4.68rem);
   & h1 {
     position: absolute;
     top: 50%;
@@ -9,6 +9,57 @@
     font-size: 3rem;
     text-align: end;
     overflow: hidden;
+  }
+
+  & p {
+    position: absolute;
+    top: 30%;
+    left: 20%;
+    font-size: 1.2rem;
+    font-family: "Satoshi";
+    font-weight: 300;
+    text-transform: uppercase;
+  }
+
+  & img:first-child {
+    position: absolute;
+    left: 2%;
+    top: 8%;
+    object-fit: cover;
+    z-index: -1;
+  }
+
+  & img:nth-child(2) {
+    position: absolute;
+    right: 5%;
+    bottom: 10%;
+    object-fit: cover;
+    z-index: -1;
+  }
+
+  & img:nth-child(3) {
+    position: absolute;
+    left: 15%;
+    bottom: 17%;
+    object-fit: cover;
+    z-index: -1;
+  }
+
+  & img:nth-child(4) {
+    position: absolute;
+    left: 50%;
+    top: 2%;
+    transform: translateX(-50%);
+    object-fit: cover;
+    z-index: -1;
+  }
+
+  & img:nth-child(5) {
+    position: absolute;
+    right: 3%;
+    top: 3%;
+    object-fit: cover;
+    z-index: -1;
   }
 }
 
