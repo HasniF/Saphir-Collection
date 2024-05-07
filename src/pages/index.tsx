@@ -5,12 +5,11 @@ import { AnimatedText } from "@/components";
 import Image from "next/image";
 import { useContext, useEffect } from "react";
 import { AppContext } from "./_app";
-
-const ImageMotion = motion(Image);
+import { useRouter } from "next/router";
 
 const Home = () => {
   const context = useContext(AppContext);
-
+  const router = useRouter();
   const mouse = {
     x: useMotionValue(0),
     y: useMotionValue(0),
@@ -52,86 +51,84 @@ const Home = () => {
         </p>
         <div className={styles.image_container}>
           <motion.div
-            style={{ x: mouse.x, y: mouse.y }}
-            onClick={() => {
-              context?.setAppColor({
-                background: "lightblue",
-                text: "yellow",
-              });
+            layoutId="myImage1"
+            transition={{
+              layout: {
+                duration: 0.8,
+                ease: [0.33, 1, 0.68, 1],
+              },
             }}
+            style={{ x: mouse.x, y: mouse.y }}
           >
             <Image
               src="/images/1.jpg"
               alt="Saphir Collection"
               width={250}
               height={250}
+              onClick={() => {
+                router.push("/product/hasni");
+              }}
             />
           </motion.div>
-          <motion.div
-            style={{ x: mouse.x, y: mouse.y }}
-            onClick={() => {
-              context?.setAppColor({
-                background: "lightgreen",
-                text: "black",
-              });
-            }}
-          >
+          {/* 2eme image */}
+          <motion.div style={{ x: mouse.x, y: mouse.y }} layoutId="myImage2">
             <Image
               src="/images/2.jpg"
               alt="Saphir Collection"
               width={350}
               height={250}
+              onClick={() => {
+                context?.setAppColor({
+                  background: "lightgreen",
+                  text: "black",
+                });
+                router.push("/product/hasni");
+              }}
             />
           </motion.div>
 
-          <motion.div
-            style={{ x: mouse.x, y: mouse.y }}
-            onClick={() => {
-              context?.setAppColor({
-                background: "grey",
-                text: "red",
-              });
-            }}
-          >
+          <motion.div style={{ x: mouse.x, y: mouse.y }}>
             <Image
               src="/images/3.jpg"
               alt="Saphir Collection"
               width={150}
               height={180}
+              onClick={() => {
+                context?.setAppColor({
+                  background: "grey",
+                  text: "red",
+                });
+              }}
             />
           </motion.div>
 
-          <motion.div
-            style={{ x: mouse.x, y: mouse.y }}
-            onClick={() => {
-              context?.setAppColor({
-                background: "lightyellow",
-                text: "blue",
-              });
-            }}
-          >
+          <motion.div style={{ x: mouse.x, y: mouse.y }}>
             <Image
               src="/images/4.jpg"
               alt="Saphir Collection"
               width={190}
               height={200}
+              onClick={() => {
+                context?.setAppColor({
+                  background: "lightyellow",
+                  text: "blue",
+                });
+              }}
             />
           </motion.div>
 
-          <motion.div
-            style={{ x: mouse.x, y: mouse.y }}
-            onClick={() => {
-              context?.setAppColor({
-                background: "lightpurple",
-                text: "black",
-              });
-            }}
-          >
+          <motion.div style={{ x: mouse.x, y: mouse.y }}>
             <Image
               src="/images/5.jpg"
               alt="Saphir Collection"
               width={250}
               height={250}
+              onClick={() => {
+                context?.setAppColor({
+                  background: "lightpink",
+                  text: "black",
+                });
+              }}
             />
           </motion.div>
         </div>

@@ -2,6 +2,7 @@ import React, { createContext } from "react";
 import type { AppProps } from "next/app";
 import { Navbar } from "@/components";
 import "@/styles/globals.css";
+import { AnimatePresence } from "framer-motion";
 
 /*
 |--------------------------------------------------------------------------
@@ -36,8 +37,10 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <React.Fragment>
       <AppContext.Provider value={{ appColor, setAppColor }}>
-        <Navbar />
-        <Component {...pageProps} />
+        <AnimatePresence mode="wait">
+          <Navbar />
+          <Component {...pageProps} />
+        </AnimatePresence>
       </AppContext.Provider>
     </React.Fragment>
   );

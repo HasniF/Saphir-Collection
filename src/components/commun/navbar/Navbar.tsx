@@ -8,6 +8,7 @@ import React, { useContext } from "react";
 import style from "@/styles/components/Navbar.module.css";
 import { motion } from "framer-motion";
 import { AppContext } from "@/pages/_app";
+import { useRouter } from "next/router";
 /*
 |--------------------------------------------------------------------------
 | Contracts
@@ -24,6 +25,7 @@ export interface NavbarProps {
 */
 export const Navbar: React.FC<NavbarProps> = (props) => {
   const context = useContext(AppContext);
+  const router = useRouter();
   // Render
   //--------------------------------------------------------------------------
   return (
@@ -34,7 +36,13 @@ export const Navbar: React.FC<NavbarProps> = (props) => {
         color: context?.appColor.text,
       }}
     >
-      <p>Saphir</p>
+      <p
+        onClick={() => {
+          router.push("/");
+        }}
+      >
+        Saphir
+      </p>
       <ul className={style.list}>
         <li>
           <motion.span whileHover={{ y: -17 }}>
