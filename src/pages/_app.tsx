@@ -1,8 +1,9 @@
 import React, { createContext } from "react";
 import type { AppProps } from "next/app";
 import { Navbar } from "@/components";
+import { motion, AnimatePresence } from "framer-motion";
 import "@/styles/globals.css";
-import { AnimatePresence } from "framer-motion";
+import { useRouter } from "next/router";
 
 /*
 |--------------------------------------------------------------------------
@@ -25,6 +26,7 @@ export interface AppContextType {
 export const AppContext = createContext<AppContextType | null>(null);
 
 export default function App({ Component, pageProps }: AppProps) {
+  const router = useRouter();
   // State
   //--------------------------------------------------------------------------
 
@@ -38,8 +40,10 @@ export default function App({ Component, pageProps }: AppProps) {
     <React.Fragment>
       <AppContext.Provider value={{ appColor, setAppColor }}>
         <AnimatePresence mode="wait">
-          <Navbar />
-          <Component {...pageProps} />
+          <motion.div key={router.pathname}>
+            <Navbar />
+            <Component {...pageProps} />
+          </motion.div>
         </AnimatePresence>
       </AppContext.Provider>
     </React.Fragment>

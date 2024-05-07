@@ -7,6 +7,9 @@ import { useContext, useEffect } from "react";
 import { AppContext } from "./_app";
 import { useRouter } from "next/router";
 
+const hiddenMask = `repeating-linear-gradient(to right, rgba(0,0,0,0) 0px, rgba(0,0,0,0) 30px, rgba(0,0,0,1) 30px, rgba(0,0,0,1) 30px)`;
+const visibleMask = `repeating-linear-gradient(to right, rgba(0,0,0,0) 0px, rgba(0,0,0,0) 0px, rgba(0,0,0,1) 0px, rgba(0,0,0,1) 30px)`;
+
 const Home = () => {
   const context = useContext(AppContext);
   const router = useRouter();
@@ -46,9 +49,14 @@ const Home = () => {
           <AnimatedText text="Saphir" className={styles.brand} />
           <AnimatedText text="Collection" className={styles.collection} />
         </motion.h1>
-        <p>
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: 20 }}
+          transition={{ delay: 1.2, ease: [0.5, 1, 0.89, 1], duration: 0.8 }}
+        >
           Issue / <span>01</span>
-        </p>
+        </motion.p>
         <div className={styles.image_container}>
           <motion.div
             layoutId="myImage1"
@@ -57,8 +65,15 @@ const Home = () => {
                 duration: 0.8,
                 ease: [0.33, 1, 0.68, 1],
               },
+              maskImage: {
+                duration: 0.8,
+                delay: 1.2,
+                ease: [0.33, 1, 0.68, 1],
+              },
             }}
             style={{ x: mouse.x, y: mouse.y }}
+            initial={{ maskImage: hiddenMask }}
+            animate={{ maskImage: visibleMask }}
           >
             <Image
               src="/images/1.jpg"
@@ -71,7 +86,22 @@ const Home = () => {
             />
           </motion.div>
           {/* 2eme image */}
-          <motion.div style={{ x: mouse.x, y: mouse.y }} layoutId="myImage2">
+          <motion.div
+            transition={{
+              layout: {
+                duration: 0.8,
+                ease: [0.33, 1, 0.68, 1],
+              },
+              maskImage: {
+                duration: 0.8,
+                delay: 1.2,
+                ease: [0.33, 1, 0.68, 1],
+              },
+            }}
+            style={{ x: mouse.x, y: mouse.y }}
+            initial={{ maskImage: hiddenMask }}
+            animate={{ maskImage: visibleMask }}
+          >
             <Image
               src="/images/2.jpg"
               alt="Saphir Collection"
@@ -87,7 +117,22 @@ const Home = () => {
             />
           </motion.div>
 
-          <motion.div style={{ x: mouse.x, y: mouse.y }}>
+          <motion.div
+            transition={{
+              layout: {
+                duration: 0.8,
+                ease: [0.33, 1, 0.68, 1],
+              },
+              maskImage: {
+                duration: 0.8,
+                delay: 1.2,
+                ease: [0.33, 1, 0.68, 1],
+              },
+            }}
+            style={{ x: mouse.x, y: mouse.y }}
+            initial={{ maskImage: hiddenMask }}
+            animate={{ maskImage: visibleMask }}
+          >
             <Image
               src="/images/3.jpg"
               alt="Saphir Collection"
@@ -102,7 +147,22 @@ const Home = () => {
             />
           </motion.div>
 
-          <motion.div style={{ x: mouse.x, y: mouse.y }}>
+          <motion.div
+            transition={{
+              layout: {
+                duration: 0.8,
+                ease: [0.33, 1, 0.68, 1],
+              },
+              maskImage: {
+                duration: 0.8,
+                delay: 1.2,
+                ease: [0.33, 1, 0.68, 1],
+              },
+            }}
+            style={{ x: mouse.x, y: mouse.y }}
+            initial={{ maskImage: hiddenMask }}
+            animate={{ maskImage: visibleMask }}
+          >
             <Image
               src="/images/4.jpg"
               alt="Saphir Collection"
@@ -117,7 +177,22 @@ const Home = () => {
             />
           </motion.div>
 
-          <motion.div style={{ x: mouse.x, y: mouse.y }}>
+          <motion.div
+            transition={{
+              layout: {
+                duration: 0.8,
+                ease: [0.33, 1, 0.68, 1],
+              },
+              maskImage: {
+                duration: 0.8,
+                delay: 1.2,
+                ease: [0.33, 1, 0.68, 1],
+              },
+            }}
+            style={{ x: mouse.x, y: mouse.y }}
+            initial={{ maskImage: hiddenMask }}
+            animate={{ maskImage: visibleMask }}
+          >
             <Image
               src="/images/5.jpg"
               alt="Saphir Collection"
