@@ -31,6 +31,15 @@ const variants = {
       delay: i * 0.05,
     },
   }),
+  exit: (i: number) => ({
+    y: 200,
+    transition: {
+      duration: 1.2,
+      ease: [0.76, 0, 0.24, 1],
+      delay: i * -0.05,
+      // play animation in reverse
+    },
+  }),
 };
 /*
 |--------------------------------------------------------------------------
@@ -59,6 +68,7 @@ export const AnimatedText: React.FC<AnimatedTextProps> = ({
             custom={index}
             animate="animate"
             initial="initial"
+            exit="exit"
           >
             {letter}
           </motion.span>

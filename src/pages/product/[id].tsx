@@ -9,6 +9,7 @@ import style from "@/styles/pages/Product.module.css";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { AppContext } from "../_app";
+import { useRouter } from "next/router";
 /*
 |--------------------------------------------------------------------------
 | Contracts
@@ -30,6 +31,8 @@ export interface ProductProps {
 */
 const Product: React.FC<ProductProps> = (props) => {
   const context = useContext(AppContext);
+  const router = useRouter();
+
   // Render
   //--------------------------------------------------------------------------
   return (
@@ -42,13 +45,18 @@ const Product: React.FC<ProductProps> = (props) => {
     >
       <div className={style.wrapper}>
         <motion.div
-          layoutId="myImage1"
+          layoutId={`myImage${router.query.id}`}
           transition={{
             duration: 0.8,
             ease: [0.33, 1, 0.68, 1],
           }}
         >
-          <Image src="/images/1.jpg" alt="Product" width={500} height={550} />
+          <Image
+            src={`/images/${router.query.id}.jpg`}
+            alt="Product"
+            width={500}
+            height={550}
+          />
         </motion.div>
         <div>
           <p>PRODUCT NAME</p>

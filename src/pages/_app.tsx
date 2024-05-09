@@ -21,6 +21,8 @@ export interface AppContextType {
       text: string;
     }>
   >;
+  playHomeAnimation: boolean;
+  setPlayHomeAnimation: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export const AppContext = createContext<AppContextType | null>(null);
@@ -34,11 +36,19 @@ export default function App({ Component, pageProps }: AppProps) {
     background: "#fff",
     text: "#000",
   });
+  const [playHomeAnimation, setPlayHomeAnimation] = React.useState(true);
   // Render
   //--------------------------------------------------------------------------
   return (
     <React.Fragment>
-      <AppContext.Provider value={{ appColor, setAppColor }}>
+      <AppContext.Provider
+        value={{
+          appColor,
+          setAppColor,
+          playHomeAnimation,
+          setPlayHomeAnimation,
+        }}
+      >
         <AnimatePresence mode="wait">
           <motion.div key={router.pathname}>
             <Navbar />

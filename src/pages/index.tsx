@@ -3,14 +3,70 @@ import styles from "@/styles/pages/Home.module.css";
 import { motion, useMotionValue } from "framer-motion";
 import { AnimatedText } from "@/components";
 import Image from "next/image";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AppContext } from "./_app";
 import { useRouter } from "next/router";
+import { useResetAppColor } from "@/hook/useResetAppColor";
 
 const hiddenMask = `repeating-linear-gradient(to right, rgba(0,0,0,0) 0px, rgba(0,0,0,0) 30px, rgba(0,0,0,1) 30px, rgba(0,0,0,1) 30px)`;
 const visibleMask = `repeating-linear-gradient(to right, rgba(0,0,0,0) 0px, rgba(0,0,0,0) 0px, rgba(0,0,0,1) 0px, rgba(0,0,0,1) 30px)`;
-
+export const data = [
+  {
+    with: 250,
+    height: 250,
+    color: "red",
+    bgColor: "black",
+  },
+  {
+    with: 350,
+    height: 250,
+    color: "lightblue",
+    bgColor: "black",
+  },
+  {
+    with: 150,
+    height: 180,
+    color: "pink",
+    bgColor: "white",
+  },
+  {
+    with: 190,
+    height: 200,
+    color: "yellow",
+    bgColor: "black",
+  },
+  {
+    with: 250,
+    height: 250,
+    color: "green",
+    bgColor: "lightred",
+  },
+];
+/*
+|--------------------------------------------------------------------------
+| Animation
+|--------------------------------------------------------------------------
+*/
+const paragraph = {
+  initial: { opacity: 0, y: 20 },
+  animate: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      delay: 1.2,
+      ease: [0.5, 1, 0.89, 1],
+      duration: 0.8,
+    },
+  },
+  exit: { opacity: 0, y: 20 },
+};
+/*
+|--------------------------------------------------------------------------
+| Component
+|--------------------------------------------------------------------------
+*/
 const Home = () => {
+  const [imageClicked, setImageClicked] = useState<number | null>(null);
   const context = useContext(AppContext);
   const router = useRouter();
   const mouse = {
@@ -19,10 +75,11 @@ const Home = () => {
   };
 
   const manageMouseMovement = (e: MouseEvent) => {
-    mouse.x.set(e.clientX / -35);
-    mouse.y.set(e.clientY / -35);
+    mouse.x.set(e.clientX / -55);
+    mouse.y.set(e.clientY / -55);
   };
 
+  useResetAppColor();
   useEffect(() => {
     window.addEventListener("mousemove", manageMouseMovement);
     return () => {
@@ -30,6 +87,8 @@ const Home = () => {
     };
   }, []);
 
+  // Render
+  //--------------------------------------------------------------------------
   return (
     <>
       <Head>
@@ -50,162 +109,61 @@ const Home = () => {
           <AnimatedText text="Collection" className={styles.collection} />
         </motion.h1>
         <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: 20 }}
-          transition={{ delay: 1.2, ease: [0.5, 1, 0.89, 1], duration: 0.8 }}
+          variants={paragraph}
+          initial="initial"
+          animate="animate"
+          exit="exit"
         >
           Issue / <span>01</span>
         </motion.p>
         <div className={styles.image_container}>
-          <motion.div
-            layoutId="myImage1"
-            transition={{
-              layout: {
-                duration: 0.8,
-                ease: [0.33, 1, 0.68, 1],
-              },
-              maskImage: {
-                duration: 0.8,
-                delay: 1.2,
-                ease: [0.33, 1, 0.68, 1],
-              },
-            }}
-            style={{ x: mouse.x, y: mouse.y }}
-            initial={{ maskImage: hiddenMask }}
-            animate={{ maskImage: visibleMask }}
-          >
-            <Image
-              src="/images/1.jpg"
-              alt="Saphir Collection"
-              width={250}
-              height={250}
-              onClick={() => {
-                router.push("/product/hasni");
+          {data.map((item, index) => (
+            <motion.div
+              key={index}
+              style={{ x: mouse.x, y: mouse.y }}
+              layoutId={`myImage${index}`}
+              transition={{
+                layout: {
+                  duration: 0.8,
+                  ease: [0.33, 1, 0.68, 1],
+                },
+                maskImage: {
+                  duration: 0.8,
+                  delay: 1.2,
+                  ease: [0.33, 1, 0.68, 1],
+                },
               }}
-            />
-          </motion.div>
-          {/* 2eme image */}
-          <motion.div
-            transition={{
-              layout: {
-                duration: 0.8,
-                ease: [0.33, 1, 0.68, 1],
-              },
-              maskImage: {
-                duration: 0.8,
-                delay: 1.2,
-                ease: [0.33, 1, 0.68, 1],
-              },
-            }}
-            style={{ x: mouse.x, y: mouse.y }}
-            initial={{ maskImage: hiddenMask }}
-            animate={{ maskImage: visibleMask }}
-          >
-            <Image
-              src="/images/2.jpg"
-              alt="Saphir Collection"
-              width={350}
-              height={250}
-              onClick={() => {
-                context?.setAppColor({
-                  background: "lightgreen",
-                  text: "black",
-                });
-                router.push("/product/hasni");
+              initial={{
+                maskImage: context?.playHomeAnimation
+                  ? hiddenMask
+                  : visibleMask,
               }}
-            />
-          </motion.div>
-
-          <motion.div
-            transition={{
-              layout: {
-                duration: 0.8,
-                ease: [0.33, 1, 0.68, 1],
-              },
-              maskImage: {
-                duration: 0.8,
-                delay: 1.2,
-                ease: [0.33, 1, 0.68, 1],
-              },
-            }}
-            style={{ x: mouse.x, y: mouse.y }}
-            initial={{ maskImage: hiddenMask }}
-            animate={{ maskImage: visibleMask }}
-          >
-            <Image
-              src="/images/3.jpg"
-              alt="Saphir Collection"
-              width={150}
-              height={180}
-              onClick={() => {
-                context?.setAppColor({
-                  background: "grey",
-                  text: "red",
-                });
+              animate={{ maskImage: visibleMask }}
+              exit={{
+                maskImage: index === imageClicked ? visibleMask : hiddenMask,
+                transition: {
+                  duration: 0.3,
+                  ease: [0.5, 1, 0.89, 1],
+                },
               }}
-            />
-          </motion.div>
-
-          <motion.div
-            transition={{
-              layout: {
-                duration: 0.8,
-                ease: [0.33, 1, 0.68, 1],
-              },
-              maskImage: {
-                duration: 0.8,
-                delay: 1.2,
-                ease: [0.33, 1, 0.68, 1],
-              },
-            }}
-            style={{ x: mouse.x, y: mouse.y }}
-            initial={{ maskImage: hiddenMask }}
-            animate={{ maskImage: visibleMask }}
-          >
-            <Image
-              src="/images/4.jpg"
-              alt="Saphir Collection"
-              width={190}
-              height={200}
-              onClick={() => {
-                context?.setAppColor({
-                  background: "lightyellow",
-                  text: "blue",
-                });
-              }}
-            />
-          </motion.div>
-
-          <motion.div
-            transition={{
-              layout: {
-                duration: 0.8,
-                ease: [0.33, 1, 0.68, 1],
-              },
-              maskImage: {
-                duration: 0.8,
-                delay: 1.2,
-                ease: [0.33, 1, 0.68, 1],
-              },
-            }}
-            style={{ x: mouse.x, y: mouse.y }}
-            initial={{ maskImage: hiddenMask }}
-            animate={{ maskImage: visibleMask }}
-          >
-            <Image
-              src="/images/5.jpg"
-              alt="Saphir Collection"
-              width={250}
-              height={250}
-              onClick={() => {
-                context?.setAppColor({
-                  background: "lightpink",
-                  text: "black",
-                });
-              }}
-            />
-          </motion.div>
+            >
+              <Image
+                src={`/images/${index}.jpg`}
+                alt="Saphir Collection"
+                width={item.with}
+                height={item.height}
+                onClick={() => {
+                  setImageClicked(index);
+                  context?.setPlayHomeAnimation(false);
+                  context?.setAppColor({
+                    background: item.bgColor,
+                    text: item.color,
+                  });
+                  router.push(`product/${index}`);
+                }}
+              />
+            </motion.div>
+          ))}
         </div>
       </main>
     </>
