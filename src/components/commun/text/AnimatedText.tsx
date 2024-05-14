@@ -36,7 +36,7 @@ const variants = {
     transition: {
       duration: 1.2,
       ease: [0.76, 0, 0.24, 1],
-      delay: i * -0.05,
+      delay: i * -0.06,
       // play animation in reverse
     },
   }),

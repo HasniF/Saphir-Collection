@@ -1,8 +1,9 @@
 .container {
   position: relative;
   height: calc(100vh - 4.68rem);
-  transition: background 0.6s cubic-bezier(0.33, 1, 0.68, 1),
-    color 0.6s cubic-bezier(0.33, 1, 0.68, 1);
+  transition: background 0.8s cubic-bezier(0.25, 1, 0.5, 1),
+    color 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+  transition-delay: 0.8s;
   & h1 {
     position: absolute;
     top: 50%;

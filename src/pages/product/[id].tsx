@@ -58,7 +58,7 @@ const Product: React.FC<ProductProps> = (props) => {
             height={550}
           />
         </motion.div>
-        <div>
+        {/* <div>
           <p>PRODUCT NAME</p>
           <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem
@@ -66,7 +66,7 @@ const Product: React.FC<ProductProps> = (props) => {
             recusandae maiores vel quaerat perferendis id doloribus dolore eos
             expedita, corrupti beatae rerum quod!
           </p>
-        </div>
+        </div> */}
       </div>
     </div>
   );

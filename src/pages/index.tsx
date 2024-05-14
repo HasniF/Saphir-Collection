@@ -7,39 +7,38 @@ import { useContext, useEffect, useState } from "react";
 import { AppContext } from "./_app";
 import { useRouter } from "next/router";
 import { useResetAppColor } from "@/hook/useResetAppColor";
+import { hiddenMask, visibleMask } from "@/contract";
 
-const hiddenMask = `repeating-linear-gradient(to right, rgba(0,0,0,0) 0px, rgba(0,0,0,0) 30px, rgba(0,0,0,1) 30px, rgba(0,0,0,1) 30px)`;
-const visibleMask = `repeating-linear-gradient(to right, rgba(0,0,0,0) 0px, rgba(0,0,0,0) 0px, rgba(0,0,0,1) 0px, rgba(0,0,0,1) 30px)`;
 export const data = [
   {
     with: 250,
     height: 250,
-    color: "red",
-    bgColor: "black",
+    color: "#dd5b5b",
+    bgColor: "#f0e3e3",
   },
   {
     with: 350,
     height: 250,
-    color: "lightblue",
-    bgColor: "black",
+    color: "#ffffff",
+    bgColor: "#ceb7a3",
   },
   {
     with: 150,
     height: 180,
-    color: "pink",
-    bgColor: "white",
+    color: "#f4d8a6",
+    bgColor: "#2d2720",
   },
   {
     with: 190,
     height: 200,
-    color: "yellow",
-    bgColor: "black",
+    color: "#f16120",
+    bgColor: "#ededed",
   },
   {
     with: 250,
     height: 250,
-    color: "green",
-    bgColor: "lightred",
+    color: "#c6feff",
+    bgColor: "#192327",
   },
 ];
 /*
@@ -66,7 +65,7 @@ const paragraph = {
 |--------------------------------------------------------------------------
 */
 const Home = () => {
-  const [imageClicked, setImageClicked] = useState<number | null>(null);
+  useResetAppColor();
   const context = useContext(AppContext);
   const router = useRouter();
   const mouse = {
@@ -74,18 +73,25 @@ const Home = () => {
     y: useMotionValue(0),
   };
 
-  const manageMouseMovement = (e: MouseEvent) => {
-    mouse.x.set(e.clientX / -55);
-    mouse.y.set(e.clientY / -55);
-  };
+  // State
+  //--------------------------------------------------------------------------
+  const [imageClicked, setImageClicked] = useState<number | null>(null);
 
-  useResetAppColor();
+  // UseEffect
+  //--------------------------------------------------------------------------
   useEffect(() => {
     window.addEventListener("mousemove", manageMouseMovement);
     return () => {
       window.removeEventListener("mousemove", manageMouseMovement);
     };
   }, []);
+
+  // Methods
+  //--------------------------------------------------------------------------
+  const manageMouseMovement = (e: MouseEvent) => {
+    mouse.x.set(e.clientX / -55);
+    mouse.y.set(e.clientY / -55);
+  };
 
   // Render
   //--------------------------------------------------------------------------
