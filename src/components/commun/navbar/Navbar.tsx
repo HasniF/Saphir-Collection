@@ -4,11 +4,11 @@
 | Author: FODEILLA Hasni (hasni1.fodeilla@epitech.eu)
 */
 
-import React, { useContext } from "react";
-import style from "@/styles/components/Navbar.module.css";
+import React from "react";
 import { motion } from "framer-motion";
-import { AppContext } from "@/pages/_app";
 import { useRouter } from "next/router";
+import { navbarList } from "@/contract";
+import { getBemClassName } from "@/utils";
 /*
 |--------------------------------------------------------------------------
 | Contracts
@@ -17,51 +17,36 @@ import { useRouter } from "next/router";
 export interface NavbarProps {
   children?: React.ReactNode;
 }
-
+/*
+|--------------------------------------------------------------------------
+| Style
+|--------------------------------------------------------------------------
+*/
+const style = getBemClassName("navbar", ["main"]);
 /*
 |--------------------------------------------------------------------------
 | Component
 |--------------------------------------------------------------------------
 */
 export const Navbar: React.FC<NavbarProps> = (props) => {
-  const context = useContext(AppContext);
   const router = useRouter();
   // Render
   //--------------------------------------------------------------------------
   return (
-    <nav
-      className={style.navbar}
-      style={{
-        background: context?.appColor.background,
-        color: context?.appColor.text,
-      }}
-    >
-      <p
-        onClick={() => {
-          router.push("/");
-        }}
-      >
-        Saphir
-      </p>
-      <ul className={style.list}>
-        <li>
-          <motion.span whileHover={{ y: -17 }}>
-            <span>lookbook</span>
-            <span>lookbook</span>
-          </motion.span>
-        </li>
-        <li>
-          <motion.span whileHover={{ y: -17 }}>
-            <span>about</span>
-            <span>about</span>
-          </motion.span>
-        </li>
-        <li>
-          <motion.span whileHover={{ y: -17 }}>
-            <span>contact</span>
-            <span>contact</span>
-          </motion.span>
-        </li>
+    <nav className={style.main}>
+      <p onClick={() => router.push("/")}>Saphir</p>
+      <ul>
+        {navbarList.map((item) => (
+          <li key={item.id}>
+            <motion.span
+              whileHover={{ y: -17 }}
+              onClick={() => router.push(item.path)}
+            >
+              <span>{item.name}</span>
+              <span>{item.name}</span>
+            </motion.span>
+          </li>
+        ))}
       </ul>
       <div>
         <span>Bag</span>

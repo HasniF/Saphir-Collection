@@ -1,9 +1,10 @@
 import React, { createContext } from "react";
 import type { AppProps } from "next/app";
-import { Navbar } from "@/components";
-import { motion, AnimatePresence } from "framer-motion";
+import { AnimatePresence } from "framer-motion";
 import "@/styles/globals.css";
-import { useRouter } from "next/router";
+import "@/styles/pages/home.css";
+import "@/styles/components/product.css";
+import { Navbar } from "@/components";
 
 /*
 |--------------------------------------------------------------------------
@@ -11,31 +12,16 @@ import { useRouter } from "next/router";
 |--------------------------------------------------------------------------
 */
 export interface AppContextType {
-  appColor: {
-    background: string;
-    text: string;
-  };
-  setAppColor: React.Dispatch<
-    React.SetStateAction<{
-      background: string;
-      text: string;
-    }>
-  >;
   playHomeAnimation: boolean;
   setPlayHomeAnimation: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export const AppContext = createContext<AppContextType | null>(null);
 
-export default function App({ Component, pageProps }: AppProps) {
-  const router = useRouter();
+export default function App({ Component, pageProps, router }: AppProps) {
   // State
   //--------------------------------------------------------------------------
 
-  const [appColor, setAppColor] = React.useState({
-    background: "#fff",
-    text: "#000",
-  });
   const [playHomeAnimation, setPlayHomeAnimation] = React.useState(true);
   // Render
   //--------------------------------------------------------------------------
@@ -43,17 +29,13 @@ export default function App({ Component, pageProps }: AppProps) {
     <React.Fragment>
       <AppContext.Provider
         value={{
-          appColor,
-          setAppColor,
           playHomeAnimation,
           setPlayHomeAnimation,
         }}
       >
+        <Navbar />
         <AnimatePresence mode="wait">
-          <motion.div key={router.pathname}>
-            <Navbar />
-            <Component {...pageProps} />
-          </motion.div>
+          <Component {...pageProps} key={router.asPath} />
         </AnimatePresence>
       </AppContext.Provider>
     </React.Fragment>

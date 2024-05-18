@@ -1,9 +1,8 @@
-.container {
+.home__main {
   position: relative;
+  width: 100vw;
   height: calc(100vh - 4.68rem);
-  transition: background 0.8s cubic-bezier(0.25, 1, 0.5, 1),
-    color 0.8s cubic-bezier(0.25, 1, 0.5, 1);
-  transition-delay: 0.8s;
+
   & h1 {
     position: absolute;
     top: 50%;
@@ -35,28 +34,34 @@
   }
 }
 
-.brand {
+.home__container {
+  & img {
+    object-fit: cover;
+  }
+  & div:first-child {
+    position: absolute;
+    right: 5%;
+    bottom: 10%;
+  }
+}
+
+.home__brand {
   font-family: "Ambidexter";
   font-size: 7vw;
   display: inline-block;
 }
 
-.collection {
+.home__collection {
   font-family: "Satoshi";
   font-weight: 300;
   display: inline-block;
   font-size: 7.5vw;
 }
 
-.image_container {
+.home__image_container {
   & img {
     object-fit: cover;
-    /* transition: transform 0.4s cubic-bezier(0.33, 1, 0.68, 1); */
   }
-
-  /* & div {
-    transition: transform 0.3s cubic-bezier(0.33, 1, 0.68, 1);
-  } */
 
   & div:first-child {
     position: absolute;
@@ -79,7 +84,6 @@
     position: absolute;
     left: 50%;
     top: 2%;
-    transform: translateX(-50%);
   }
 
   & div:nth-child(5) {

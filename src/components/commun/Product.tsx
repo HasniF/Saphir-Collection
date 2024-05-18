@@ -1,75 +1,64 @@
 /*
 | Developed by Hasni
-| Filename: Product.tsx
+| Filename: product.tsx
 | Author: FODEILLA Hasni (hasni1.fodeilla@epitech.eu)
 */
 
-import React, { useContext } from "react";
-import style from "@/styles/pages/Product.module.css";
+import React from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { AppContext } from "../_app";
+import { Data } from "@/contract/interfaces";
 import { useRouter } from "next/router";
+import { getBemClassName } from "@/utils";
+
 /*
 |--------------------------------------------------------------------------
-| Contracts
+| Contract
 |--------------------------------------------------------------------------
 */
 export interface ProductProps {
   children?: React.ReactNode;
+  product: Data;
+  setSelectProduct: React.Dispatch<React.SetStateAction<Data | null>>;
 }
+
 /*
 |--------------------------------------------------------------------------
-| Animation
+| Style
 |--------------------------------------------------------------------------
 */
-
+const style = getBemClassName("product", ["container", "wrapper"]);
 /*
 |--------------------------------------------------------------------------
 | Component
 |--------------------------------------------------------------------------
 */
-const Product: React.FC<ProductProps> = (props) => {
-  const context = useContext(AppContext);
+const Product: React.FC<ProductProps> = ({ product, setSelectProduct }) => {
   const router = useRouter();
-
   // Render
   //--------------------------------------------------------------------------
   return (
-    <div
-      className={style.container}
-      style={{
-        background: context?.appColor.background,
-        color: context?.appColor.text,
-      }}
-    >
+    <motion.div className={style.container}>
+      <button onClick={() => setSelectProduct(null)}>RETOUUUUR</button>
       <div className={style.wrapper}>
         <motion.div
-          layoutId={`myImage${router.query.id}`}
+          layoutId={`${product.id}`}
           transition={{
-            duration: 0.8,
-            ease: [0.33, 1, 0.68, 1],
+            duration: 0.3,
+            delay: 0.5,
+            type: "spring",
+            stiffness: 300,
+            damping: 30,
           }}
         >
-          <Image
-            src={`/images/${router.query.id}.jpg`}
-            alt="Product"
-            width={500}
-            height={550}
-          />
+          <Image src={product.image} alt="Product" width={500} height={550} />
         </motion.div>
-        {/* <div>
+        <div>
           <p>PRODUCT NAME</p>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem
-            voluptate dolor voluptas voluptatem blanditiis, ratione repellendus
-            recusandae maiores vel quaerat perferendis id doloribus dolore eos
-            expedita, corrupti beatae rerum quod!
-          </p>
-        </div> */}
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+        </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
-
 export default Product;
