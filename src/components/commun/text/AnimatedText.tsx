@@ -34,9 +34,9 @@ const variants = {
   exit: (i: number) => ({
     y: 200,
     transition: {
-      duration: 1.2,
+      duration: 0.8,
       ease: [0.76, 0, 0.24, 1],
-      delay: i * -0.06,
+      delay: i * -0.05,
     },
   }),
 };

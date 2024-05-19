@@ -17,6 +17,15 @@ export interface PageProps {
 
 /*
 |--------------------------------------------------------------------------
+| Animation
+|--------------------------------------------------------------------------
+*/
+const transition = {
+  duration: 1.1,
+  ease: [0.87, 0, 0.13, 1],
+};
+/*
+|--------------------------------------------------------------------------
 | Component
 |--------------------------------------------------------------------------
 */
@@ -31,20 +40,14 @@ export const Page: React.FC<PageProps> = ({ children }) => {
         initial={{ scaleY: 0 }}
         animate={{ scaleY: 0 }}
         exit={{ scaleY: 1 }}
-        transition={{
-          duration: 0.8,
-          ease: [0.87, 0, 0.13, 1],
-        }}
+        transition={{ ...transition }}
       />
       <motion.div
         className="out"
         initial={{ scaleY: 1 }}
         animate={{ scaleY: 0 }}
         exit={{ scaleY: 0 }}
-        transition={{
-          duration: 0.8,
-          ease: [0.87, 0, 0.13, 1],
-        }}
+        transition={{ ...transition }}
       />
     </>
   );

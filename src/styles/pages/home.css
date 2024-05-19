@@ -61,6 +61,11 @@
 .home__image_container {
   & img {
     object-fit: cover;
+    transition: transform 0.6s cubic-bezier(0.33, 1, 0.68, 1);
+    &:hover {
+      transform: scale(1.1);
+      cursor: pointer;
+    }
   }
 
   & div:first-child {

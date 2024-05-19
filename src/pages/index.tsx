@@ -1,11 +1,9 @@
 import Head from "next/head";
-import { motion, useMotionValue } from "framer-motion";
+import { useContext, useEffect } from "react";
+import { motion, useMotionValue, useSpring } from "framer-motion";
 import Image from "next/image";
-import { useContext, useEffect, useState } from "react";
-import { Data } from "@/contract/interfaces";
 import { data, hiddenMask, visibleMask } from "@/contract";
 import { AnimatedText, Page } from "@/components";
-import Product from "@/components/commun/Product";
 import { AppContext } from "./_app";
 import { getBemClassName } from "@/utils";
 /*
@@ -32,9 +30,10 @@ const imageVariants = {
   animate: {
     maskImage: visibleMask,
     transition: {
-      duration: 0.8,
-      ease: [0.33, 1, 0.68, 1],
-      layoutId: { type: "spring", stiffness: 300, damping: 30 },
+      delay: 1.2,
+      duration: 0.6,
+      // ease: [0.33, 1, 0.68, 1],
+      ease: [0.65, 0, 0.35, 1],
     },
   },
   exit: {
@@ -61,9 +60,17 @@ const style = getBemClassName("home", [
 */
 export default function Home() {
   const context = useContext(AppContext);
+
   const mouse = {
-    x: useMotionValue(0),
-    y: useMotionValue(0),
+    y: useSpring(useMotionValue(0), { stiffness: 1200, damping: 150 }),
+    x: useSpring(useMotionValue(0), { stiffness: 1200, damping: 150 }),
+  };
+
+  // Methods
+  //--------------------------------------------------------------------------
+  const manageMouseMovement = (e: MouseEvent) => {
+    mouse.x.set(e.clientX / -55);
+    mouse.y.set(e.clientY / -55);
   };
 
   // UseEffect
@@ -76,12 +83,6 @@ export default function Home() {
     };
   }, []);
 
-  // Methods
-  //--------------------------------------------------------------------------
-  const manageMouseMovement = (e: MouseEvent) => {
-    mouse.x.set(e.clientX / -55);
-    mouse.y.set(e.clientY / -55);
-  };
   return (
     <>
       <Head>
@@ -110,7 +111,7 @@ export default function Home() {
                 key={index}
                 style={{ x: mouse.x, y: mouse.y }}
                 variants={imageVariants}
-                initial={context?.playHomeAnimation ? "initial" : "animate"}
+                initial="initial"
                 animate="animate"
                 exit="exit"
               >
