@@ -1,0 +1,61 @@
+.product__container {
+  width: 100vw;
+  height: calc(100vh - 4.68rem);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.product__image_container {
+  position: relative;
+  width: 480px;
+  height: 580px;
+  & img {
+    object-fit: cover;
+  }
+}
+
+.product__infos_container {
+  width: 30%;
+  height: 580px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 5rem;
+  margin-left: 3rem;
+
+  & div:first-child {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  & h3 {
+    font-family: "satoshi", sans-serif;
+    font-size: calc(1rem + 2vw);
+  }
+
+  & p {
+    font-family: "satoshi", sans-serif;
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+
+  .price {
+    font-family: "Ambidexter", sans-serif;
+    font-size: 1.5rem;
+  }
+
+  .button {
+    min-width: fit-content;
+    height: 3rem;
+    background-color: black;
+    border: none;
+    color: white;
+    font-family: "satoshi", sans-serif;
+    font-weight: 300;
+    font-size: 1rem;
+    text-transform: uppercase;
+    cursor: pointer;
+  }
+}

@@ -2,8 +2,8 @@ import React, { createContext } from "react";
 import type { AppProps } from "next/app";
 import { AnimatePresence } from "framer-motion";
 import "@/styles/globals.css";
-import "@/styles/pages/home.css";
-import "@/styles/components/product.css";
+import "@/styles/home.css";
+import "@/styles/product.css";
 import { Navbar } from "@/components";
 
 /*
