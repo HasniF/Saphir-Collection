@@ -74,8 +74,8 @@ ul {
   width: 100vw;
   height: 100vh;
   background: black;
-  transform-origin: top;
   z-index: 2;
+  transform-origin: top;
 }
 
 /* navbar style */

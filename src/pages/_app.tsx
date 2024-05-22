@@ -35,7 +35,7 @@ export default function App({ Component, pageProps, router }: AppProps) {
       >
         <Navbar />
         <AnimatePresence mode="wait">
-          <Component {...pageProps} key={router.asPath} />
+          <Component {...pageProps} key={router.route} />
         </AnimatePresence>
       </AppContext.Provider>
     </React.Fragment>

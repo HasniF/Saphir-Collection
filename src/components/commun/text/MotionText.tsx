@@ -1,47 +1,51 @@
 /*
 | Developed by Hasni
-| Filename: AnimatedText.tsx
+| Filename: MotionText.tsx
 | Author: FODEILLA Hasni (hasni1.fodeilla@epitech.eu)
 */
 
 import React from "react";
-import { TargetAndTransition, motion } from "framer-motion";
+import { motion } from "framer-motion";
 /*
 |--------------------------------------------------------------------------
 | Contracts
 |--------------------------------------------------------------------------
 */
-export interface AnimatedTextProps {
+export interface MotionTextProps {
   children?: React.ReactNode;
   text: string;
-  className?: string;
-  variants?: {
-    initial: TargetAndTransition;
-    animate: (i: number) => TargetAndTransition;
-    exit: (i: number) => TargetAndTransition;
-  };
+  lineHeigh?: number;
 }
+
+/*
+|--------------------------------------------------------------------------
+| Style
+|--------------------------------------------------------------------------
+*/
+const spanStyle = {
+  display: "block",
+  overflow: "hidden",
+};
 /*
 |--------------------------------------------------------------------------
 | Animation
 |--------------------------------------------------------------------------
 */
-const variantsDefault = {
-  initial: { y: 200 },
+const spanVariants = {
+  initial: { y: 150 },
   animate: (i: number) => ({
     y: 0,
     transition: {
+      delay: i * 0.08,
       duration: 1.2,
-      ease: [0.76, 0, 0.24, 1],
-      delay: i * 0.05,
+      ease: [0.33, 1, 0.68, 1],
     },
   }),
   exit: (i: number) => ({
-    y: 200,
+    y: 150,
     transition: {
-      duration: 0.8,
+      duration: 1.2,
       ease: [0.76, 0, 0.24, 1],
-      delay: i * -0.05,
     },
   }),
 };
@@ -50,36 +54,34 @@ const variantsDefault = {
 | Component
 |--------------------------------------------------------------------------
 */
-export const AnimatedText: React.FC<AnimatedTextProps> = ({
-  text,
-  className,
-  variants,
-}) => {
+export const MotionText: React.FC<MotionTextProps> = ({ text, lineHeigh }) => {
   // Render
   //--------------------------------------------------------------------------
   return (
-    <span
-      style={{
-        display: "block",
-        overflow: "hidden",
-        lineHeight: "1.2",
-      }}
-    >
-      {text.split("").map((letter, index) => (
-        <span key={index}>
+    <>
+      {text.split("\n").map((letter, index) => (
+        <span
+          key={index}
+          style={{
+            ...spanStyle,
+            lineHeight: lineHeigh ? lineHeigh : 1.2,
+          }}
+        >
           <motion.span
-            className={className}
-            variants={variants || variantsDefault}
-            custom={index}
-            animate="animate"
+            variants={spanVariants}
             initial="initial"
+            animate="animate"
             exit="exit"
-            style={{ display: "inline-block" }}
+            custom={index}
+            style={{
+              ...spanStyle,
+              lineHeight: lineHeigh ? lineHeigh : 1.2,
+            }}
           >
-            {letter === " " ? "\u00A0" : letter}
+            {letter}
           </motion.span>
         </span>
       ))}
-    </span>
+    </>
   );
 };

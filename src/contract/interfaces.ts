@@ -2,9 +2,9 @@ import { StaticImageData } from "next/image";
 
 export interface Data {
   id: number;
+  title: string;
   with: number;
   height: number;
-  color: string;
-  bgColor: string;
+  price: number;
   image: StaticImageData;
 }
