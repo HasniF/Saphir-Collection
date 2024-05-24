@@ -1,10 +1,12 @@
 import React, { createContext } from "react";
 import type { AppProps } from "next/app";
 import { AnimatePresence } from "framer-motion";
+import { Navbar } from "@/components";
+import { ReactLenis } from "lenis/react";
 import "@/styles/globals.css";
 import "@/styles/home.css";
 import "@/styles/product.css";
-import { Navbar } from "@/components";
+import "@/styles/lookbook.css";
 
 /*
 |--------------------------------------------------------------------------
@@ -21,8 +23,8 @@ export const AppContext = createContext<AppContextType | null>(null);
 export default function App({ Component, pageProps, router }: AppProps) {
   // State
   //--------------------------------------------------------------------------
-
   const [playHomeAnimation, setPlayHomeAnimation] = React.useState(true);
+
   // Render
   //--------------------------------------------------------------------------
   return (
@@ -33,10 +35,12 @@ export default function App({ Component, pageProps, router }: AppProps) {
           setPlayHomeAnimation,
         }}
       >
-        <Navbar />
-        <AnimatePresence mode="wait">
-          <Component {...pageProps} key={router.route} />
-        </AnimatePresence>
+        <ReactLenis root options={{ lerp: 0.05 }}>
+          <Navbar />
+          <AnimatePresence mode="wait">
+            <Component {...pageProps} key={router.route} />
+          </AnimatePresence>
+        </ReactLenis>
       </AppContext.Provider>
     </React.Fragment>
   );
