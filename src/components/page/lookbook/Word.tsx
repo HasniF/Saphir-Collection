@@ -5,7 +5,7 @@
 */
 
 import React from "react";
-import { MotionValue, motion, useTransform } from "framer-motion";
+import { MotionValue, motion, useSpring, useTransform } from "framer-motion";
 
 /*
 |--------------------------------------------------------------------------
@@ -25,12 +25,13 @@ interface WordProps {
 */
 export const Word: React.FC<WordProps> = ({ children, range, progress }) => {
   const opacity = useTransform(progress, range, [0, 1]);
+  const opacitySmooth = useSpring(opacity, { stiffness: 800, damping: 100 });
   // Render
   //--------------------------------------------------------------------------
   return (
     <span className="span_container">
       <span className="span_absolute">{children}</span>
-      <motion.span style={{ opacity }}>{children}</motion.span>
+      <motion.span style={{ opacity: opacitySmooth }}>{children}</motion.span>
     </span>
   );
 };

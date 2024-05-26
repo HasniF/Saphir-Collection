@@ -17,6 +17,12 @@ import image4 from "../../public/images/lookbook/3.jpg";
 import image5 from "../../public/images/lookbook/4.jpg";
 import image6 from "../../public/images/lookbook/5.jpg";
 import image7 from "../../public/images/lookbook/6.jpg";
+import image8 from "../../public/images/lookbook/7.jpg";
+import image9 from "../../public/images/lookbook/8.jpg";
+import image10 from "../../public/images/lookbook/9.jpg";
+import image11 from "../../public/images/lookbook/10.jpg";
+import image12 from "../../public/images/lookbook/11.jpg";
+import image13 from "../../public/images/lookbook/12.jpg";
 
 /*
 |--------------------------------------------------------------------------
@@ -45,17 +51,25 @@ const LookBook: NextPage = () => {
   const textRef = React.useRef<HTMLParagraphElement>(null);
 
   const images = [image1, image2, image3, image4, image5, image6];
-  const stickyImages = [image7, image6, image5, image1];
+  const stickyImages = [
+    image10,
+    image7,
+    image12,
+    image8,
+    image11,
+    image13,
+    image9,
+  ];
 
   const { scrollYProgress } = useScroll({ target: ref });
   const { scrollYProgress: textScrollYProgress } = useScroll({
     target: textRef,
-    offset: ["start 0.5", "start 0.25"],
+    offset: ["start 0.5", "start 0.05"],
   });
 
   const scales = [
     useTransform(scrollYProgress, [0, 1], [1, 4]),
-    useTransform(scrollYProgress, [0, 1], [1, 5]),
+    useTransform(scrollYProgress, [0, 1], [1, 4.8]),
     useTransform(scrollYProgress, [0, 1], [1, 6]),
     useTransform(scrollYProgress, [0, 1], [1, 6.7]),
     useTransform(scrollYProgress, [0, 1], [1, 7.2]),
@@ -64,6 +78,25 @@ const LookBook: NextPage = () => {
 
   return (
     <Page>
+      {/* <div
+        style={{
+          position: "fixed",
+          bottom: "5%",
+          right: "3%",
+          zIndex: 1,
+        }}
+      >
+        <button
+          onClick={() => {
+            window.scrollTo({
+              top: 0,
+              behavior: "smooth",
+            });
+          }}
+        >
+          TOP
+        </button>
+      </div> */}
       <div style={{ width: "100vw" }}>
         <div className={style.container} ref={ref}>
           <div className="wrapper">
