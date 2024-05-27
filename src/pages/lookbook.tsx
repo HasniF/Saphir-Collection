@@ -3,10 +3,10 @@
 | Filename: lookBook.tsx
 | Author: FODEILLA Hasni (hasni1.fodeilla@epitech.eu)
 */
-import React from "react";
+import React, { useEffect } from "react";
 import { NextPage } from "next";
 import { useScroll, useTransform, motion } from "framer-motion";
-import { Page } from "@/components";
+import { ArrowUp, Page } from "@/components";
 import { getBemClassName } from "@/utils";
 import { StickyImage, Word } from "@/components/page";
 import Image from "next/image";
@@ -35,6 +35,7 @@ const style = getBemClassName("lookbook", [
   "element",
   "stickyImage",
   "paragraph",
+  "scrool_top",
 ]);
 
 /*
@@ -66,7 +67,6 @@ const LookBook: NextPage = () => {
     target: textRef,
     offset: ["start 0.5", "start 0.05"],
   });
-
   const scales = [
     useTransform(scrollYProgress, [0, 1], [1, 4]),
     useTransform(scrollYProgress, [0, 1], [1, 4.8]),
@@ -78,25 +78,6 @@ const LookBook: NextPage = () => {
 
   return (
     <Page>
-      {/* <div
-        style={{
-          position: "fixed",
-          bottom: "5%",
-          right: "3%",
-          zIndex: 1,
-        }}
-      >
-        <button
-          onClick={() => {
-            window.scrollTo({
-              top: 0,
-              behavior: "smooth",
-            });
-          }}
-        >
-          TOP
-        </button>
-      </div> */}
       <div style={{ width: "100vw" }}>
         <div className={style.container} ref={ref}>
           <div className="wrapper">
@@ -143,6 +124,14 @@ const LookBook: NextPage = () => {
         {stickyImages.map((src, index) => (
           <StickyImage key={index} src={src} className={style.stickyImage} />
         ))}
+      </div>
+
+      {/* scrool to top */}
+      <div
+        className={style.scrool_top}
+        onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+      >
+        <ArrowUp width="1.5vw" height="1.5vw" />
       </div>
     </Page>
   );
