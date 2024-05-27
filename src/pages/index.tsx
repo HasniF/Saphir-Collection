@@ -23,7 +23,6 @@ const paragraph = {
       duration: 0.8,
     },
   },
-  exit: { opacity: 0, y: 20 },
 };
 
 const imageVariants = {
@@ -33,13 +32,8 @@ const imageVariants = {
     transition: {
       delay: 1.2,
       duration: 0.6,
-      // ease: [0.33, 1, 0.68, 1],
       ease: [0.65, 0, 0.35, 1],
     },
-  },
-  exit: {
-    maskImage: hiddenMask,
-    transition: { duration: 0.3, ease: [0.5, 1, 0.89, 1] },
   },
 };
 
@@ -97,12 +91,7 @@ export default function Home() {
             <AnimatedText text="Saphir" className={style.brand} />
             <AnimatedText text="Collection" className={style.collection} />
           </h1>
-          <motion.p
-            variants={paragraph}
-            initial="initial"
-            animate="animate"
-            exit="exit"
-          >
+          <motion.p variants={paragraph} initial="initial" animate="animate">
             Issue / <span>01</span>
           </motion.p>
           <div className={style.image_container}>
