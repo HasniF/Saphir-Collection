@@ -1,10 +1,10 @@
 import { StaticImageData } from "next/image";
 
-export interface Data {
+export type Data = {
   id: number;
   title: string;
-  with: number;
+  width: number;
   height: number;
   price: number;
   image: StaticImageData;
-}
+};

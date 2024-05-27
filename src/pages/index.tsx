@@ -60,7 +60,7 @@ const style = getBemClassName("home", [
 |--------------------------------------------------------------------------
 */
 export default function Home() {
-  const context = useContext(AppContext);
+  // const context = useContext(AppContext);
   const router = useRouter();
   const mouse = {
     y: useSpring(useMotionValue(0), { stiffness: 1200, damping: 150 }),
@@ -78,7 +78,6 @@ export default function Home() {
   //--------------------------------------------------------------------------
   useEffect(() => {
     window.addEventListener("mousemove", manageMouseMovement);
-    context?.setPlayHomeAnimation(false);
     return () => {
       window.removeEventListener("mousemove", manageMouseMovement);
     };
@@ -120,8 +119,7 @@ export default function Home() {
                 <Image
                   src={item.image}
                   alt="Saphir Collection"
-                  width={item.with}
-                  height={item.height}
+                  fill
                   placeholder="blur"
                 />
               </motion.div>
