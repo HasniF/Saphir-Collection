@@ -1,5 +1,5 @@
 import Head from "next/head";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { motion, useMotionValue, useSpring } from "framer-motion";
 import Image from "next/image";
 import { data, hiddenMask, visibleMask } from "@/contract";
@@ -60,14 +60,12 @@ export default function Home() {
     y: useSpring(useMotionValue(0), { stiffness: 1200, damping: 150 }),
     x: useSpring(useMotionValue(0), { stiffness: 1200, damping: 150 }),
   };
-
   // Methods
   //--------------------------------------------------------------------------
   const manageMouseMovement = (e: MouseEvent) => {
     mouse.x.set(e.clientX / -55);
     mouse.y.set(e.clientY / -55);
   };
-
   // UseEffect
   //--------------------------------------------------------------------------
   useEffect(() => {
@@ -108,7 +106,8 @@ export default function Home() {
                 <Image
                   src={item.image}
                   alt="Saphir Collection"
-                  fill
+                  width={500}
+                  height={100}
                   placeholder="blur"
                 />
               </motion.div>

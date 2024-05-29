@@ -72,9 +72,9 @@
     position: absolute;
     left: 4%;
     top: 12%;
-    width: 20vw;
-    height: 30vh;
     & img {
+      width: 20vw;
+      height: 30vh;
       object-position: center 10%;
     }
   }
@@ -83,16 +83,18 @@
     position: absolute;
     right: 7%;
     bottom: 2%;
-    width: 21vw;
-    height: 32vh;
+    & img {
+      width: 21vw;
+      height: 32vh;
+    }
   }
   & div:nth-child(3) {
     position: absolute;
-    left: 8%;
+    left: 13%;
     bottom: 7%;
-    width: 30vw;
-    height: 24vh;
     & img {
+      width: 15vw;
+      height: 24vh;
       object-position: center 45%;
     }
   }
@@ -101,15 +103,19 @@
     position: absolute;
     left: 45%;
     top: 2%;
-    width: 14vw;
-    height: 30vh;
+    & img {
+      width: 14vw;
+      height: 30vh;
+    }
   }
 
   & div:nth-child(5) {
     position: absolute;
-    right: 3%;
+    right: 6%;
     top: 8%;
-    width: 20vw;
-    height: 36vh;
+    & img {
+      width: 17vw;
+      height: 33vh;
+    }
   }
 }

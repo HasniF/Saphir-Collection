@@ -92,7 +92,9 @@ const LookBook: NextPage = () => {
                     <Image
                       src={src}
                       alt="lookbook"
-                      fill
+                      // fill
+                      width={index === 0 ? 800 : 500}
+                      height={index === 0 ? 800 : 100}
                       placeholder="blur"
                       style={{ objectFit: "cover" }}
                     />
