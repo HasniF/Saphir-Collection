@@ -39,9 +39,10 @@ export const StickyImage: React.FC<StickyImageProps> = ({ src, className }) => {
           src={src}
           alt="lookbook"
           placeholder="blur"
-          width={800}
-          height={800}
+          width={1500}
+          height={100}
           style={{ objectFit: "cover" }}
+          priority
         />
       </motion.div>
     </div>
