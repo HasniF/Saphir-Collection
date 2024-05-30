@@ -15,8 +15,6 @@ import "@/styles/lookbook.css";
 |--------------------------------------------------------------------------
 */
 export interface AppContextType {
-  // playHomeAnimation: boolean;
-  // setPlayHomeAnimation: React.Dispatch<React.SetStateAction<boolean>>;
   bag: BagType[];
   setBag: React.Dispatch<React.SetStateAction<BagType[]>>;
   openBag: boolean;
@@ -28,17 +26,15 @@ export const AppContext = createContext<AppContextType | null>(null);
 export default function App({ Component, pageProps, router }: AppProps) {
   // State
   //--------------------------------------------------------------------------
-  // const [playHomeAnimation, setPlayHomeAnimation] = React.useState(true);
   const [bag, setBag] = React.useState<BagType[]>([]);
   const [openBag, setOpenBag] = React.useState(false);
+
   // Render
   //--------------------------------------------------------------------------
   return (
     <React.Fragment>
       <AppContext.Provider
         value={{
-          // playHomeAnimation,
-          // setPlayHomeAnimation,
           bag,
           setBag,
           openBag,
@@ -47,7 +43,9 @@ export default function App({ Component, pageProps, router }: AppProps) {
       >
         <Navbar />
         <AnimatePresence mode="wait">
-          {openBag && <Bag openBag={openBag} setOpenBag={setOpenBag} />}
+          {openBag && (
+            <Bag openBag={openBag} setOpenBag={setOpenBag} bag={bag} />
+          )}
         </AnimatePresence>
         <ReactLenis root options={{ lerp: 0.05 }}>
           <AnimatePresence mode="wait">

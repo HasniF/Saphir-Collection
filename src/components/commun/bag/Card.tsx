@@ -6,8 +6,9 @@
 
 import Image from "next/image";
 import React from "react";
-import { AnimatedText, MotionText } from "..";
+import { AnimatedText, BagProps, MotionText } from "..";
 import { motion } from "framer-motion";
+import { BagType } from "@/contract";
 /*
 |--------------------------------------------------------------------------
 | Contracts
@@ -15,7 +16,7 @@ import { motion } from "framer-motion";
 */
 export interface CardProps {
   children?: React.ReactNode;
-  image_src?: string;
+  item: BagType;
 }
 /*
 |--------------------------------------------------------------------------
@@ -28,7 +29,7 @@ const style = {
     borderBottom: "1.5px solid rgba(0, 0, 0, 0.2)",
     display: "flex",
     alignItems: "center",
-    paddingBottom: 5,
+    paddingBottom: 10,
     gap: "2rem",
     margin: "1rem 0",
   },
@@ -61,7 +62,7 @@ const style = {
 | Component
 |--------------------------------------------------------------------------
 */
-export const Card: React.FC<CardProps> = (props) => {
+export const Card: React.FC<CardProps> = ({ item }) => {
   // Render
   //--------------------------------------------------------------------------
   return (
@@ -76,7 +77,7 @@ export const Card: React.FC<CardProps> = (props) => {
       }}
     >
       <Image
-        src="/images/0.jpg"
+        src={item.image}
         width={70}
         height={60}
         alt="image product"
@@ -84,7 +85,7 @@ export const Card: React.FC<CardProps> = (props) => {
       />
       <div style={style.cardInfos}>
         <p style={style.paragraphCommon}>
-          <AnimatedText text="Product name" delay={2} />
+          <AnimatedText text={item.name} delay={2} />
         </p>
         <p style={style.paragraphDescription}>
           <MotionText
@@ -93,7 +94,7 @@ export const Card: React.FC<CardProps> = (props) => {
           />
         </p>
         <p style={{ ...style.paragraphCommon, ...style.price }}>
-          <AnimatedText text="600€" delay={6} />
+          <AnimatedText text={`${item.price.toString()}€`} delay={6} />
         </p>
       </div>
     </motion.div>

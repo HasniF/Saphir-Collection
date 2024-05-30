@@ -4,14 +4,13 @@
 | Author: FODEILLA Hasni (hasni1.fodeilla@epitech.eu)
 */
 
-import React from "react";
+import React, { useEffect } from "react";
 import { NextPage, GetStaticPropsContext } from "next";
 import { Data, data } from "@/contract";
-import { useRouter } from "next/router";
 import { getBemClassName } from "@/utils";
 import Image from "next/image";
-import { motion } from "framer-motion";
 import { AnimatedText, MotionButton, MotionText, Page } from "@/components";
+import { AppContext } from "../_app";
 /*
 |--------------------------------------------------------------------------
 | Interface
@@ -56,25 +55,6 @@ const variants = {
     },
   }),
 };
-
-// const slider = {
-//   initial: { scaleX: 1 },
-//   animate: {
-//     scaleX: 0,
-//     transition: {
-//       delay: 1.2,
-//       duration: 1,
-//       ease: [0.25, 1, 0.5, 1],
-//     },
-//   },
-//   exit: {
-//     scaleX: 1,
-//     transition: {
-//       ease: [0.25, 1, 0.5, 1],
-//       duration: 0.6,
-//     },
-//   },
-// };
 /*
 |--------------------------------------------------------------------------
 | Component
@@ -82,13 +62,30 @@ const variants = {
 */
 
 const Product: NextPage<ProductProps> = ({ product }) => {
+  const [isInBag, setIsInBag] = React.useState(false);
+  const context = React.useContext(AppContext);
+
+  useEffect(() => {
+    if (context) {
+      const isInBag = context.bag.some((item) => item.id === product.id);
+      setIsInBag(isInBag);
+    }
+  }, []);
   // Render
   //--------------------------------------------------------------------------
   return (
     <Page>
       <div className={style.container}>
         <div className={style.image_container}>
-          <Image src={product.image} alt="product" fill placeholder="blur" />
+          <Image
+            src={product.image}
+            alt="product"
+            placeholder="blur"
+            width={480}
+            height={580}
+            quality={70}
+            priority
+          />
         </div>
         <div className={style.infos_container}>
           <div>
@@ -105,17 +102,32 @@ const Product: NextPage<ProductProps> = ({ product }) => {
               />
             </p>
           </div>
-          {/* <div className="container_btn">
-            <button className="button">Add to cart</button>
-            <motion.div
-              className="revealing_slider"
-              variants={slider}
-              initial="initial"
-              animate="animate"
-              exit="exit"
+          {/* <MotionButton text="Add to cart" /> */}
+          {isInBag ? (
+            <MotionButton
+              text="Open Bag"
+              onClick={() => context?.setOpenBag(true)}
             />
-          </div> */}
-          <MotionButton text="Add to cart" />
+          ) : (
+            <MotionButton
+              text="Add to cart"
+              onClick={() => {
+                if (context) {
+                  context.setBag([
+                    ...context.bag,
+                    {
+                      id: product.id,
+                      name: product.title,
+                      price: product.price,
+                      image: product.image,
+                    },
+                  ]);
+                  setIsInBag(true);
+                  context.setOpenBag(true);
+                }
+              }}
+            />
+          )}
         </div>
       </div>
     </Page>

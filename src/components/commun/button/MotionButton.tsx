@@ -14,6 +14,7 @@ import { motion } from "framer-motion";
 export interface ButtonProps {
   children?: React.ReactNode;
   text: string;
+  onClick?: () => void;
 }
 
 /*
@@ -80,12 +81,14 @@ const slider = {
 | Component
 |--------------------------------------------------------------------------
 */
-export const MotionButton: React.FC<ButtonProps> = ({ text }) => {
+export const MotionButton: React.FC<ButtonProps> = ({ text, onClick }) => {
   // Render
   //--------------------------------------------------------------------------
   return (
     <div style={style.container}>
-      <button style={style.btn}>{text}</button>
+      <button style={style.btn} onClick={onClick}>
+        {text}
+      </button>
       <motion.div
         style={style.slider}
         variants={slider}

@@ -8,6 +8,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { AnimatedText, Cross, MotionButton } from "..";
 import { Card } from "./Card";
+import { BagType } from "@/contract";
 /*
 |--------------------------------------------------------------------------
 | Contracts
@@ -17,6 +18,7 @@ export interface BagProps {
   children?: React.ReactNode;
   openBag: boolean;
   setOpenBag: React.Dispatch<React.SetStateAction<boolean>>;
+  bag: BagType[];
 }
 /*
 |--------------------------------------------------------------------------
@@ -29,7 +31,7 @@ export interface BagProps {
 | Component
 |--------------------------------------------------------------------------
 */
-export const Bag: React.FC<BagProps> = ({ openBag, setOpenBag }) => {
+export const Bag: React.FC<BagProps> = ({ openBag, setOpenBag, bag }) => {
   // Render
   //--------------------------------------------------------------------------
   return (
@@ -53,7 +55,6 @@ export const Bag: React.FC<BagProps> = ({ openBag, setOpenBag }) => {
         backdropFilter: "blur(4px)",
         WebkitBackdropFilter: "blur(4px)",
       }}
-      //   onClick={() => setOpenBag(false)}
     >
       <motion.div
         style={{
@@ -64,7 +65,7 @@ export const Bag: React.FC<BagProps> = ({ openBag, setOpenBag }) => {
           minHeight: "200%",
           background: "#fff",
           zIndex: 10,
-          padding: "3rem 3rem",
+          padding: "1.5rem 3rem",
         }}
         initial={{ x: "100%" }}
         animate={{
@@ -88,9 +89,20 @@ export const Bag: React.FC<BagProps> = ({ openBag, setOpenBag }) => {
           <AnimatedText text="Bag" />
         </h3>
         <div>
-          {Array.from({ length: 5 }).map((_, i) => (
-            <Card key={i} />
-          ))}
+          {bag.length > 0 ? (
+            bag.map((item) => <Card key={item.id} item={item} />)
+          ) : (
+            <p
+              style={{
+                fontFamily: "Satoshi",
+                fontWeight: 400,
+                fontSize: "1.2rem",
+                textAlign: "center",
+              }}
+            >
+              Your bag is empty
+            </p>
+          )}
         </div>
         <div
           style={{
@@ -105,7 +117,8 @@ export const Bag: React.FC<BagProps> = ({ openBag, setOpenBag }) => {
               fontSize: "1.2rem",
             }}
           >
-            TOTAL : 1000€
+            TOTAL : {bag.reduce((acc, item) => acc + item.price, 0).toFixed(2)}{" "}
+            €
           </p>
         </div>
         <MotionButton text="Checkout" />
