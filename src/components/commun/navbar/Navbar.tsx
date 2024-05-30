@@ -17,6 +17,7 @@ import { AppContext } from "@/pages/_app";
 */
 export interface NavbarProps {
   children?: React.ReactNode;
+  itemsCount: number;
 }
 /*
 |--------------------------------------------------------------------------
@@ -29,7 +30,7 @@ const style = getBemClassName("navbar", ["main"]);
 | Component
 |--------------------------------------------------------------------------
 */
-export const Navbar: React.FC<NavbarProps> = (props) => {
+export const Navbar: React.FC<NavbarProps> = ({ itemsCount }) => {
   const router = useRouter();
   const context = useContext(AppContext);
   // Render
@@ -55,6 +56,7 @@ export const Navbar: React.FC<NavbarProps> = (props) => {
         onClick={() => context?.setOpenBag(true)}
       >
         <span>Bag</span>
+        {itemsCount > 0 && <span className="count">{itemsCount}</span>}
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"

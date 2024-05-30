@@ -132,9 +132,20 @@ html.lenis body {
     }
   }
   & div {
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 0.3rem;
+    .count {
+      position: absolute;
+      top: -0.5rem;
+      right: -0.5rem;
+      font-size: 8px;
+      background: #ff0000;
+      color: white;
+      padding: 0.1rem 0.3rem;
+      border-radius: 50%;
+    }
   }
 }

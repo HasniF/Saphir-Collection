@@ -46,7 +46,7 @@ export default function App({ Component, pageProps, router }: AppProps) {
           setOpenBag,
         }}
       >
-        <Navbar />
+        <Navbar itemsCount={bag.length} />
         <AnimatePresence mode="wait">
           {openBag && (
             <Bag openBag={openBag} setOpenBag={setOpenBag} bag={bag} />
