@@ -22,7 +22,7 @@ export interface PageProps {
 |--------------------------------------------------------------------------
 */
 const transition = {
-  duration: 1.1,
+  duration: 1.3,
   ease: [0.87, 0, 0.13, 1],
 };
 /*

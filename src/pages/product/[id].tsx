@@ -11,7 +11,7 @@ import { useRouter } from "next/router";
 import { getBemClassName } from "@/utils";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { AnimatedText, MotionText, Page } from "@/components";
+import { AnimatedText, MotionButton, MotionText, Page } from "@/components";
 /*
 |--------------------------------------------------------------------------
 | Interface
@@ -57,24 +57,24 @@ const variants = {
   }),
 };
 
-const slider = {
-  initial: { scaleX: 1 },
-  animate: {
-    scaleX: 0,
-    transition: {
-      delay: 1.2,
-      duration: 1,
-      ease: [0.25, 1, 0.5, 1],
-    },
-  },
-  exit: {
-    scaleX: 1,
-    transition: {
-      ease: [0.25, 1, 0.5, 1],
-      duration: 0.6,
-    },
-  },
-};
+// const slider = {
+//   initial: { scaleX: 1 },
+//   animate: {
+//     scaleX: 0,
+//     transition: {
+//       delay: 1.2,
+//       duration: 1,
+//       ease: [0.25, 1, 0.5, 1],
+//     },
+//   },
+//   exit: {
+//     scaleX: 1,
+//     transition: {
+//       ease: [0.25, 1, 0.5, 1],
+//       duration: 0.6,
+//     },
+//   },
+// };
 /*
 |--------------------------------------------------------------------------
 | Component
@@ -105,7 +105,7 @@ const Product: NextPage<ProductProps> = ({ product }) => {
               />
             </p>
           </div>
-          <div className="container_btn">
+          {/* <div className="container_btn">
             <button className="button">Add to cart</button>
             <motion.div
               className="revealing_slider"
@@ -114,7 +114,8 @@ const Product: NextPage<ProductProps> = ({ product }) => {
               animate="animate"
               exit="exit"
             />
-          </div>
+          </div> */}
+          <MotionButton text="Add to cart" />
         </div>
       </div>
     </Page>

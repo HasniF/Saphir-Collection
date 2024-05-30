@@ -13,6 +13,7 @@ import { motion } from "framer-motion";
 */
 export interface MotionTextProps {
   children?: React.ReactNode;
+  delay?: number;
   text: string;
   lineHeigh?: number;
 }
@@ -54,7 +55,11 @@ const spanVariants = {
 | Component
 |--------------------------------------------------------------------------
 */
-export const MotionText: React.FC<MotionTextProps> = ({ text, lineHeigh }) => {
+export const MotionText: React.FC<MotionTextProps> = ({
+  text,
+  lineHeigh,
+  delay,
+}) => {
   // Render
   //--------------------------------------------------------------------------
   return (
@@ -72,7 +77,7 @@ export const MotionText: React.FC<MotionTextProps> = ({ text, lineHeigh }) => {
             initial="initial"
             animate="animate"
             exit="exit"
-            custom={index}
+            custom={delay ? index + delay : index}
             style={{
               ...spanStyle,
               lineHeight: lineHeigh ? lineHeigh : 1.2,

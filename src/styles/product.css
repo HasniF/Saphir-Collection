@@ -57,7 +57,7 @@
     font-size: 1.5rem;
   }
 
-  .container_btn {
+  /* .container_btn {
     position: relative;
     width: 100%;
   }
@@ -85,5 +85,5 @@
     background-color: white;
     z-index: 1;
     transform-origin: right;
-  }
+  } */
 }

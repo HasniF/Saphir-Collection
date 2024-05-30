@@ -8,3 +8,10 @@ export type Data = {
   price: number;
   image: StaticImageData;
 };
+
+export type BagType = {
+  id: number;
+  name: string;
+  price: number;
+  image: StaticImageData;
+};

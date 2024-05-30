@@ -4,11 +4,12 @@
 | Author: FODEILLA Hasni (hasni1.fodeilla@epitech.eu)
 */
 
-import React from "react";
+import React, { useContext } from "react";
 import { motion } from "framer-motion";
 import { useRouter } from "next/router";
 import { navbarList } from "@/contract";
 import { getBemClassName } from "@/utils";
+import { AppContext } from "@/pages/_app";
 /*
 |--------------------------------------------------------------------------
 | Contracts
@@ -30,6 +31,7 @@ const style = getBemClassName("navbar", ["main"]);
 */
 export const Navbar: React.FC<NavbarProps> = (props) => {
   const router = useRouter();
+  const context = useContext(AppContext);
   // Render
   //--------------------------------------------------------------------------
   return (
@@ -48,7 +50,10 @@ export const Navbar: React.FC<NavbarProps> = (props) => {
           </li>
         ))}
       </ul>
-      <div>
+      <div
+        style={{ cursor: "pointer" }}
+        onClick={() => context?.setOpenBag(true)}
+      >
         <span>Bag</span>
         <svg
           xmlns="http://www.w3.org/2000/svg"

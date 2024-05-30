@@ -14,6 +14,7 @@ import { TargetAndTransition, motion } from "framer-motion";
 export interface AnimatedTextProps {
   children?: React.ReactNode;
   text: string;
+  delay?: number;
   className?: string;
   variants?: {
     initial: TargetAndTransition;
@@ -41,7 +42,7 @@ const variantsDefault = {
     transition: {
       duration: 0.8,
       ease: [0.76, 0, 0.24, 1],
-      delay: i * -0.05,
+      delay: i * 0.03,
     },
   }),
 };
@@ -54,6 +55,7 @@ export const AnimatedText: React.FC<AnimatedTextProps> = ({
   text,
   className,
   variants,
+  delay,
 }) => {
   // Render
   //--------------------------------------------------------------------------
@@ -70,7 +72,7 @@ export const AnimatedText: React.FC<AnimatedTextProps> = ({
           <motion.span
             className={className}
             variants={variants || variantsDefault}
-            custom={index}
+            custom={delay ? index + delay : index}
             animate="animate"
             initial="initial"
             exit="exit"
