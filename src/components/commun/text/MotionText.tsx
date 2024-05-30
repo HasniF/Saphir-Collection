@@ -45,6 +45,7 @@ const spanVariants = {
   exit: (i: number) => ({
     y: 150,
     transition: {
+      delay: 0.08,
       duration: 1.2,
       ease: [0.76, 0, 0.24, 1],
     },

@@ -60,7 +60,7 @@ ul {
   width: 100vw;
   height: 100vh;
   background: black;
-  z-index: 2;
+  z-index: 20;
   transform-origin: bottom;
 }
 .out {
@@ -70,7 +70,7 @@ ul {
   width: 100vw;
   height: 100vh;
   background: black;
-  z-index: 2;
+  z-index: 20;
   transform-origin: top;
 }
 

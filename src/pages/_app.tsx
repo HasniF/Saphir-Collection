@@ -1,4 +1,4 @@
-import React, { createContext } from "react";
+import React, { createContext, useEffect } from "react";
 import type { AppProps } from "next/app";
 import { AnimatePresence } from "framer-motion";
 import { Bag, Navbar } from "@/components";
@@ -29,6 +29,11 @@ export default function App({ Component, pageProps, router }: AppProps) {
   const [bag, setBag] = React.useState<BagType[]>([]);
   const [openBag, setOpenBag] = React.useState(false);
 
+  // Effect
+  //--------------------------------------------------------------------------
+  useEffect(() => {
+    if (openBag) setOpenBag(false);
+  }, [router.route]);
   // Render
   //--------------------------------------------------------------------------
   return (
