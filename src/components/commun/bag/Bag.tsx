@@ -5,7 +5,7 @@
 */
 
 import React from "react";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { AnimatedText, Cross, MotionButton, MotionText } from "..";
 import { Card } from "./Card";
 import { BagType } from "@/contract";

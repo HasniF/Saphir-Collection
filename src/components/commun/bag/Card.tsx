@@ -6,9 +6,10 @@
 
 import Image from "next/image";
 import React from "react";
-import { AnimatedText, BagProps, MotionText } from "..";
-import { motion } from "framer-motion";
+import { AnimatedText, MotionText, Trash } from "..";
+import { AnimatePresence, motion } from "framer-motion";
 import { BagType } from "@/contract";
+import { AppContext } from "@/pages/_app";
 /*
 |--------------------------------------------------------------------------
 | Contracts
@@ -29,9 +30,10 @@ const style = {
     borderBottom: "1.5px solid rgba(0, 0, 0, 0.2)",
     display: "flex",
     alignItems: "center",
+    width: "fit-content",
     paddingBottom: 10,
     gap: "2rem",
-    margin: "1rem 0",
+    margin: "1rem auto",
   },
   cardInfos: {
     display: "flex",
@@ -63,6 +65,7 @@ const style = {
 |--------------------------------------------------------------------------
 */
 export const Card: React.FC<CardProps> = ({ item }) => {
+  const context = React.useContext(AppContext);
   // Render
   //--------------------------------------------------------------------------
   return (
@@ -96,6 +99,14 @@ export const Card: React.FC<CardProps> = ({ item }) => {
         <p style={{ ...style.paragraphCommon, ...style.price }}>
           <AnimatedText text={`${item.price.toString()}€`} delay={6} />
         </p>
+      </div>
+      <div
+        style={{ width: "1rem", cursor: "pointer" }}
+        onClick={() =>
+          context?.setBag(context.bag.filter((el) => el.id !== item.id))
+        }
+      >
+        <Trash />
       </div>
     </motion.div>
   );
