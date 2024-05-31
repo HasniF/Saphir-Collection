@@ -70,7 +70,8 @@ const Product: NextPage<ProductProps> = ({ product }) => {
       const isInBag = context.bag.some((item) => item.id === product.id);
       setIsInBag(isInBag);
     }
-  }, []);
+  }, [context?.bag]);
+
   // Render
   //--------------------------------------------------------------------------
   return (
@@ -102,7 +103,6 @@ const Product: NextPage<ProductProps> = ({ product }) => {
               />
             </p>
           </div>
-          {/* <MotionButton text="Add to cart" /> */}
           {isInBag ? (
             <MotionButton
               text="Open Bag"
