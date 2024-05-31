@@ -57,9 +57,7 @@ export default function App({ Component, pageProps, router }: AppProps) {
       >
         <Navbar itemsCount={bag.length} />
         <AnimatePresence mode="wait">
-          {openBag && (
-            <Bag openBag={openBag} setOpenBag={setOpenBag} bag={bag} />
-          )}
+          {openBag && <Bag setOpenBag={setOpenBag} bag={bag} />}
         </AnimatePresence>
         <ReactLenis root options={{ lerp: 0.05 }}>
           <AnimatePresence mode="wait">

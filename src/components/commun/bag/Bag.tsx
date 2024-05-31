@@ -9,6 +9,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { AnimatedText, Cross, MotionButton, MotionText } from "..";
 import { Card } from "./Card";
 import { BagType } from "@/contract";
+import { useRouter } from "next/router";
 /*
 |--------------------------------------------------------------------------
 | Contracts
@@ -16,7 +17,6 @@ import { BagType } from "@/contract";
 */
 export interface BagProps {
   children?: React.ReactNode;
-  openBag: boolean;
   setOpenBag: React.Dispatch<React.SetStateAction<boolean>>;
   bag: BagType[];
 }
@@ -124,7 +124,8 @@ const corssVariants = {
 | Component
 |--------------------------------------------------------------------------
 */
-export const Bag: React.FC<BagProps> = ({ openBag, setOpenBag, bag }) => {
+export const Bag: React.FC<BagProps> = ({ setOpenBag, bag }) => {
+  const router = useRouter();
   // Render
   //--------------------------------------------------------------------------
   return (
@@ -159,7 +160,10 @@ export const Bag: React.FC<BagProps> = ({ openBag, setOpenBag, bag }) => {
                 />
               </p>
             </div>
-            <MotionButton text="Checkout" />
+            <MotionButton
+              text="Checkout"
+              onClick={() => router.push("/contact")}
+            />
           </React.Fragment>
         ) : (
           <div style={style.emtyContainer}>
