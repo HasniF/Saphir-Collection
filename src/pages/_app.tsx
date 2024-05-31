@@ -34,6 +34,15 @@ export default function App({ Component, pageProps, router }: AppProps) {
   useEffect(() => {
     if (openBag) setOpenBag(false);
   }, [router.route]);
+
+  useEffect(() => {
+    const storageBag = localStorage.getItem("bag");
+    if (storageBag !== null && JSON.parse(storageBag).length > 0)
+      setBag(JSON.parse(storageBag) as BagType[]);
+  }, []);
+
+  useEffect(() => localStorage.setItem("bag", JSON.stringify(bag)), [bag]);
+
   // Render
   //--------------------------------------------------------------------------
   return (
