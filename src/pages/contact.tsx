@@ -73,13 +73,28 @@ const style = {
 | Animation
 |--------------------------------------------------------------------------
 */
-const variant = {
-  initial: { y: -100, opacity: 0 },
-  animate: { y: 0, opacity: 1 },
-  transition: {
-    duration: 1.5,
-    delay: 1,
-    ease: [0.76, 0, 0.24, 1],
+const motionFooter = {
+  initial: { y: 20, opacity: 0 },
+  animate: {
+    y: 0,
+    opacity: 1,
+    transition: {
+      delay: 1.6,
+      duration: 0.6,
+      ease: [0.61, 1, 0.88, 1],
+    },
+  },
+};
+
+const motionWord = {
+  animate: {
+    x: ["0%", "-100%"],
+    transition: {
+      duration: 11,
+      ease: "linear",
+      repeat: Infinity,
+      delay: 2.8,
+    },
   },
 };
 /*
@@ -106,13 +121,8 @@ const Contact: NextPage = () => {
             <motion.p
               key={index}
               style={style.paragraph}
-              animate={{ x: ["0%", "-100%"] }}
-              transition={{
-                duration: 11,
-                ease: "linear",
-                repeat: Infinity,
-                delay: 2.8,
-              }}
+              variants={motionWord}
+              animate="animate"
             >
               <AnimatedText
                 text={`Saphir✨elegance✨Chic✨Unique✨`}
@@ -122,7 +132,12 @@ const Contact: NextPage = () => {
           ))}
         </div>
         {/* Contact & social medias */}
-        <motion.div style={style.socialMediasContainer}>
+        <motion.div
+          style={style.socialMediasContainer}
+          variants={motionFooter}
+          initial="initial"
+          animate="animate"
+        >
           <div style={style.socialMediasWrapper}>
             <span className={styleBem.span}>
               <a>hasni-fodeilla99@hotmail.com</a>
