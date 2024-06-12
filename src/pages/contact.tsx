@@ -145,25 +145,47 @@ const Contact: NextPage = () => {
           >
             <div style={style.socialMediasWrapper}>
               <span className={styleBem.span}>
-                <a>hasni-fodeilla99@hotmail.com</a>
+                <a
+                  href="mailto:hasni-fodeilla99@hotmail.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  hasni-fodeilla99@hotmail.com
+                </a>
               </span>
               <span className={styleBem.span}>06 58 96 00 40</span>
             </div>
             <div style={style.socialMediasWrapperTwo}>
               <span className={styleBem.span}>
-                <a>X (Twitter)</a>
+                <a
+                  href="https://twitter.com/senseii91"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  X (Twitter)
+                </a>
               </span>
               <span className={styleBem.span}>
-                <a>Linkedin</a>
+                <a
+                  href="https://www.linkedin.com/in/hasni-fodeilla/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Linkedin
+                </a>
               </span>
               <span className={styleBem.span}>
-                <a>Github</a>
+                <a
+                  href="https://github.com/HasniF"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Github
+                </a>
               </span>
             </div>
             <div style={style.socialMediasWrapperTwo}>
-              <span className={styleBem.span}>
-                <a>MADE BY : HASNI ©2024</a>
-              </span>
+              <span className={styleBem.span}>MADE BY : HASNI ©2024</span>
             </div>
           </motion.div>
         </div>
