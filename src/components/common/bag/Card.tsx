@@ -7,8 +7,8 @@
 import Image from "next/image";
 import React from "react";
 import { AnimatedText, MotionText, Trash } from "..";
-import { AnimatePresence, motion } from "framer-motion";
-import { BagType } from "@/contract";
+import { motion } from "framer-motion";
+import { BagType, StyleType } from "@/contract";
 import { AppContext } from "@/pages/_app";
 /*
 |--------------------------------------------------------------------------
@@ -25,7 +25,7 @@ export interface CardProps {
 |--------------------------------------------------------------------------
 */
 
-const style = {
+const style: StyleType = {
   container: {
     borderBottom: "1.5px solid rgba(0, 0, 0, 0.2)",
     display: "flex",
@@ -40,7 +40,7 @@ const style = {
     flexDirection: "column",
     alignItems: "flex-start",
     gap: "0.5rem",
-  } as React.CSSProperties,
+  },
   paragraphCommon: {
     fontSize: "1rem",
     fontFamily: "Satoshi",
@@ -52,11 +52,11 @@ const style = {
     fontWeight: 400,
     textTransform: "none",
     textAlign: "left",
-  } as React.CSSProperties,
+  },
   price: {
     textAlign: "right",
     width: "100%",
-  } as React.CSSProperties,
+  },
 };
 
 /*

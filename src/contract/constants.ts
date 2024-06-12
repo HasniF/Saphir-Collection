@@ -52,13 +52,13 @@ const data: Data[] = [
 const navbarList = [
   {
     id: 1,
-    name: "lookbook",
-    path: "/lookbook",
+    name: "home",
+    path: "/",
   },
   {
     id: 2,
-    name: "about",
-    path: "/about",
+    name: "lookbook",
+    path: "/lookbook",
   },
   {
     id: 3,

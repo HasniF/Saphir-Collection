@@ -6,6 +6,7 @@
 
 import React from "react";
 import { motion } from "framer-motion";
+import { StyleType } from "@/contract";
 /*
 |--------------------------------------------------------------------------
 | Contracts
@@ -23,11 +24,11 @@ export interface ButtonProps {
 |--------------------------------------------------------------------------
 */
 
-const style = {
+const style: StyleType = {
   container: {
     position: "relative",
     width: "100%",
-  } as React.CSSProperties,
+  },
   btn: {
     minWidth: "fit-content",
     width: "100%",
@@ -41,7 +42,7 @@ const style = {
     textTransform: "uppercase",
     cursor: "pointer",
     overflow: "hidden",
-  } as React.CSSProperties,
+  },
   slider: {
     position: "absolute",
     top: "0",
@@ -51,7 +52,7 @@ const style = {
     backgroundColor: "white",
     zIndex: "1",
     transformOrigin: "right",
-  } as React.CSSProperties,
+  },
 };
 /*
 |--------------------------------------------------------------------------

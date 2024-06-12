@@ -9,6 +9,7 @@ import { NextPage } from "next";
 import { AnimatedText, MotionText, Page } from "@/components";
 import { motion } from "framer-motion";
 import { getBemClassName } from "@/utils";
+import { StyleType } from "@/contract";
 /*
 |--------------------------------------------------------------------------
 | Style
@@ -16,21 +17,21 @@ import { getBemClassName } from "@/utils";
 */
 const styleBem = getBemClassName("contact", ["span"]);
 
-const style = {
+const style: StyleType = {
   container: {
     position: "relative",
     display: "flex",
     flexDirection: "column",
     height: "calc(100vh - 4.68rem)",
     width: "100vw",
-  } as React.CSSProperties,
+  },
   introText: {
     marginTop: "10vh",
     fontSize: "2.5vw",
     fontFamily: "Satoshi, sans-serif",
     fontWeight: 300,
     textAlign: "center",
-  } as React.CSSProperties,
+  },
   paragraphWrapper: {
     position: "absolute",
     top: "50%",
@@ -39,14 +40,14 @@ const style = {
     overflow: "hidden",
     width: "100%",
     whiteSpace: "nowrap",
-  } as React.CSSProperties,
+  },
   paragraph: {
     userSelect: "none",
     fontSize: "8vw",
     fontFamily: "Satoshi , sans-serif",
     fontWeight: 500,
     textTransform: "uppercase",
-  } as React.CSSProperties,
+  },
   socialMediasContainer: {
     position: "absolute",
     bottom: "5vh",
@@ -54,18 +55,18 @@ const style = {
     display: "flex",
     justifyContent: "space-between",
     padding: "0 3.5rem",
-  } as React.CSSProperties,
+  },
   socialMediasWrapper: {
     display: "flex",
     flexDirection: "column",
     gap: "1vh",
-  } as React.CSSProperties,
+  },
   socialMediasWrapperTwo: {
     display: "flex",
     flexDirection: "row",
     alignItems: "end",
     gap: "3rem",
-  } as React.CSSProperties,
+  },
 };
 
 /*

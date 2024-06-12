@@ -5,10 +5,10 @@
 */
 
 import React from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import { AnimatedText, Cross, MotionButton, MotionText } from "..";
 import { Card } from "./Card";
-import { BagType } from "@/contract";
+import { BagType, StyleType } from "@/contract";
 import { useRouter } from "next/router";
 /*
 |--------------------------------------------------------------------------
@@ -25,7 +25,7 @@ export interface BagProps {
 | Styles
 |--------------------------------------------------------------------------
 */
-const style = {
+const style: StyleType = {
   container: {
     position: "fixed",
     top: 0,
@@ -37,7 +37,7 @@ const style = {
     overflowY: "hidden",
     backdropFilter: "blur(4px)",
     WebkitBackdropFilter: "blur(4px)",
-  } as React.CSSProperties,
+  },
   wrapper: {
     position: "fixed",
     right: 0,
@@ -47,14 +47,14 @@ const style = {
     background: "#fff",
     zIndex: 10,
     padding: "1.5rem 3rem",
-  } as React.CSSProperties,
+  },
   title: {
     fontSize: "1.75rem",
     fontWeight: 700,
     textTransform: "uppercase",
     fontFamily: "Satoshi",
     textAlign: "center",
-  } as React.CSSProperties,
+  },
   emtyContainer: {
     height: "100%",
     display: "flex",
@@ -62,18 +62,18 @@ const style = {
     justifyContent: "center",
     alignItems: "center",
     gap: "1rem",
-  } as React.CSSProperties,
+  },
   firstParagraph: {
     fontFamily: "Satoshi",
     fontWeight: 400,
     textTransform: "uppercase",
     fontSize: "2.5rem",
-  } as React.CSSProperties,
+  },
   lastParagraph: {
     fontFamily: "Satoshi",
     fontWeight: 200,
     fontSize: "1rem",
-  } as React.CSSProperties,
+  },
   corss: {
     position: "absolute",
     top: "2rem",
@@ -81,7 +81,7 @@ const style = {
     cursor: "pointer",
     zIndex: 10,
     width: "1.5rem",
-  } as React.CSSProperties,
+  },
 };
 
 /*
