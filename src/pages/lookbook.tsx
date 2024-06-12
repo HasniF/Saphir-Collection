@@ -6,7 +6,7 @@
 import React, { useEffect } from "react";
 import { NextPage } from "next";
 import { useScroll, useTransform, motion } from "framer-motion";
-import { ArrowUp, Page } from "@/components";
+import { ArrowUp, MyHead, Page } from "@/components";
 import { getBemClassName } from "@/utils";
 import { StickyImage, Word } from "@/components/page";
 import Image from "next/image";
@@ -77,65 +77,70 @@ const LookBook: NextPage = () => {
   ];
 
   return (
-    <Page>
-      <div style={{ width: "100vw" }}>
-        <div className={style.container} ref={ref}>
-          <div className="wrapper">
-            <div className="sticky">
-              {images.map((src, index) => (
-                <motion.div
-                  key={index}
-                  className={style.element}
-                  style={{ scale: scales[index] }}
-                >
-                  <div className="image_container">
-                    <Image
-                      src={src}
-                      alt="lookbook"
-                      width={index === 0 ? 800 : 500}
-                      height={index === 0 ? 800 : 100}
-                      placeholder="blur"
-                      style={{ objectFit: "cover" }}
-                      priority
-                    />
-                  </div>
-                </motion.div>
-              ))}
+    <>
+      <MyHead currentPath="Lookbook">
+        <meta property="og:image" content="/images/lookbook/0.jpg" />
+      </MyHead>
+      <Page>
+        <div style={{ width: "100vw" }}>
+          <div className={style.container} ref={ref}>
+            <div className="wrapper">
+              <div className="sticky">
+                {images.map((src, index) => (
+                  <motion.div
+                    key={index}
+                    className={style.element}
+                    style={{ scale: scales[index] }}
+                  >
+                    <div className="image_container">
+                      <Image
+                        src={src}
+                        alt="lookbook"
+                        width={index === 0 ? 800 : 500}
+                        height={index === 0 ? 800 : 100}
+                        placeholder="blur"
+                        style={{ objectFit: "cover" }}
+                        priority
+                      />
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
             </div>
           </div>
+          {/* paragraph section */}
+          <div className={style.paragraph}>
+            <p ref={textRef}>
+              {myText.map((word, i) => {
+                const start = i / myText.length;
+                const end = start + 1 / myText.length;
+                return (
+                  <Word
+                    key={i}
+                    range={[start, end]}
+                    progress={textScrollYProgress}
+                  >
+                    {word}
+                  </Word>
+                );
+              })}
+            </p>
+          </div>
+          {/* sticky Images section */}
+          {stickyImages.map((src, index) => (
+            <StickyImage key={index} src={src} className={style.stickyImage} />
+          ))}
         </div>
-        {/* paragraph section */}
-        <div className={style.paragraph}>
-          <p ref={textRef}>
-            {myText.map((word, i) => {
-              const start = i / myText.length;
-              const end = start + 1 / myText.length;
-              return (
-                <Word
-                  key={i}
-                  range={[start, end]}
-                  progress={textScrollYProgress}
-                >
-                  {word}
-                </Word>
-              );
-            })}
-          </p>
-        </div>
-        {/* sticky Images section */}
-        {stickyImages.map((src, index) => (
-          <StickyImage key={index} src={src} className={style.stickyImage} />
-        ))}
-      </div>
 
-      {/* scrool to top */}
-      <div
-        className={style.scrool_top}
-        onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-      >
-        <ArrowUp width="1.5vw" height="1.5vw" />
-      </div>
-    </Page>
+        {/* scrool to top */}
+        <div
+          className={style.scrool_top}
+          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+        >
+          <ArrowUp width="1.5vw" height="1.5vw" />
+        </div>
+      </Page>
+    </>
   );
 };
 

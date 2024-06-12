@@ -6,7 +6,7 @@
 
 import React from "react";
 import { NextPage } from "next";
-import { AnimatedText, MotionText, Page } from "@/components";
+import { AnimatedText, MotionText, MyHead, Page } from "@/components";
 import { motion } from "framer-motion";
 import { getBemClassName } from "@/utils";
 import { StyleType } from "@/contract";
@@ -107,63 +107,68 @@ const Contact: NextPage = () => {
   // Render
   //--------------------------------------------------------------------------
   return (
-    <Page>
-      <div style={style.container}>
-        {/* Intro */}
-        <p style={style.introText}>
-          <MotionText
-            text={`Thanks for your interest in our project ! Please note this is a demo site \n only  you cannot buy anything here.  It showcases our skills in \n web development and design.`}
-            delay={5}
-          />
-        </p>
-        {/* Animated Text */}
-        <div style={style.paragraphWrapper}>
-          {Array.from({ length: 2 }).map((_, index) => (
-            <motion.p
-              key={index}
-              style={style.paragraph}
-              variants={motionWord}
-              animate="animate"
-            >
-              <AnimatedText
-                text={`Saphir✨elegance✨Chic✨Unique✨`}
-                delay={19}
-              />
-            </motion.p>
-          ))}
+    <>
+      <MyHead currentPath="Contact">
+        <meta property="og:image" content="/images/lookbook/0.jpg" />
+      </MyHead>
+      <Page>
+        <div style={style.container}>
+          {/* Intro */}
+          <p style={style.introText}>
+            <MotionText
+              text={`Thanks for your interest in our project ! Please note this is a demo site \n only  you cannot buy anything here.  It showcases our skills in \n web development and design.`}
+              delay={5}
+            />
+          </p>
+          {/* Animated Text */}
+          <div style={style.paragraphWrapper}>
+            {Array.from({ length: 2 }).map((_, index) => (
+              <motion.p
+                key={index}
+                style={style.paragraph}
+                variants={motionWord}
+                animate="animate"
+              >
+                <AnimatedText
+                  text={`Saphir✨elegance✨Chic✨Unique✨`}
+                  delay={19}
+                />
+              </motion.p>
+            ))}
+          </div>
+          {/* Contact & social medias */}
+          <motion.div
+            style={style.socialMediasContainer}
+            variants={motionFooter}
+            initial="initial"
+            animate="animate"
+          >
+            <div style={style.socialMediasWrapper}>
+              <span className={styleBem.span}>
+                <a>hasni-fodeilla99@hotmail.com</a>
+              </span>
+              <span className={styleBem.span}>06 58 96 00 40</span>
+            </div>
+            <div style={style.socialMediasWrapperTwo}>
+              <span className={styleBem.span}>
+                <a>X (Twitter)</a>
+              </span>
+              <span className={styleBem.span}>
+                <a>Linkedin</a>
+              </span>
+              <span className={styleBem.span}>
+                <a>Github</a>
+              </span>
+            </div>
+            <div style={style.socialMediasWrapperTwo}>
+              <span className={styleBem.span}>
+                <a>MADE BY : HASNI ©2024</a>
+              </span>
+            </div>
+          </motion.div>
         </div>
-        {/* Contact & social medias */}
-        <motion.div
-          style={style.socialMediasContainer}
-          variants={motionFooter}
-          initial="initial"
-          animate="animate"
-        >
-          <div style={style.socialMediasWrapper}>
-            <span className={styleBem.span}>
-              <a>hasni-fodeilla99@hotmail.com</a>
-            </span>
-            <span className={styleBem.span}>06 58 96 00 40</span>
-          </div>
-          <div style={style.socialMediasWrapperTwo}>
-            <span className={styleBem.span}>
-              <a>X (Twitter)</a>
-            </span>
-            <span className={styleBem.span}>
-              <a>Linkedin</a>
-            </span>
-            <span className={styleBem.span}>
-              <a>Github</a>
-            </span>
-          </div>
-          <div style={style.socialMediasWrapperTwo}>
-            <span className={styleBem.span}>
-              <a>MADE BY : HASNI ©2024</a>
-            </span>
-          </div>
-        </motion.div>
-      </div>
-    </Page>
+      </Page>
+    </>
   );
 };
 export default Contact;
